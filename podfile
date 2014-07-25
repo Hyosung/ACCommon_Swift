@@ -1,0 +1,19 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, "8.0"
+
+target "ACCommon_Swift" do
+
+platform:ios,'8.0'
+pod 'AFNetworking','~>2.0'
+pod 'SVWebViewController','~>1.0'
+pod 'ASIHTTPRequest'
+pod 'Reachability'
+pod 'SoundManager'
+pod 'SVProgressHUD'
+
+end
+
+target "ACCommon_SwiftTests" do
+
+end
+
