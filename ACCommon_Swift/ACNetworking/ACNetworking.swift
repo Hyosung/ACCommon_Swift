@@ -10,12 +10,12 @@ import Foundation
 
 let kACHTTPRequestBaseURLString: NSString = ""
 
-let kACASIRequestFinishKey: NSString      = "kACASIRequestFinishKey"
-let kACASINetworkQueueFinishKey: NSString = "kACASINetworkQueueFinishKey"
+let kACASIRequestFinishKey      = "kACASIRequestFinishKey"
+let kACASINetworkQueueFinishKey = "kACASINetworkQueueFinishKey"
 
 typealias ACCompleteCallback        = (result: NSDictionary!, error: NSError!) -> Void
-typealias ACUploadCallback          = (totalBytesWritten: UInt32 , totalBytesExpectedToWrite: UInt32) -> Void
-typealias ACDownloadCallback        = (size: UInt32, total:UInt32) -> Void
+typealias ACUploadCallback          = (totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) -> Void
+typealias ACDownloadCallback        = (size: Int64, total: UInt64) -> Void
 typealias ACQueueCompleteCallback   = () -> Void
 typealias ACRequestCompleteCallback = (request: ASIHTTPRequest!, result: NSDictionary!, error: NSError!) -> Void
 
@@ -105,38 +105,37 @@ class ACNetworking: NSObject {
         ACNetworking.startACASIHTTPRequestWithParams(params, method: "GET", complete: callback)
     }
     
-    class func startACASIHTTPUploadWithParams(params: Dictionary<NSString, NSString>!, fileKeys: NSArray!, fileValues: NSArray!, complete callback: ACCompleteCallback!, download: ACDownloadCallback!) {
+    class func startACASIHTTPUploadWithParams(params: Dictionary<NSString, NSString>!, fileKeys: NSArray!, fileValues: NSArray!, complete completeCallback: ACCompleteCallback!, download downloadCallback: ACDownloadCallback!) {
     }
     
-    class func startACASIHTTPDownloadWithURLString(urlString: NSString, complete completeCallback: ACCompleteCallback, downloadCallback: ACDownloadCallback) {
+    class func startACASIHTTPDownloadWithURLString(urlString: NSString, complete completeCallback: ACCompleteCallback!, download downloadCallback: ACDownloadCallback!) {
         var request: ASIHTTPRequest = ACNetworking.requestWithURLString(urlString, method: "GET", params: nil)
         request.allowResumeForFileDownloads = true
-        NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-//        [request setDownloadDestinationPath:[APP_CACHES stringByAppendingString:@"ACDownload"]];
-//        [request setTemporaryFileDownloadPath:APP_TMP_ADDTO(@"ACTemp")];
-//        [request setCompletionBlock:^{
-//            if (completeCallback) {
-//            NSError __autoreleasing *error = nil;
-//            id result = [NSJSONSerialization JSONObjectWithData:request.responseData options:NSJSONReadingAllowFragments error:&error];
-//            completeCallback(result, error);
-//            }
-//            
-//            [request clearDelegatesAndCancel];
-//            }];
-//        [request setFailedBlock:^{
-//            if (completeCallback) {
-//            completeCallback(nil, request.error);
-//            }
-//            
-//            [request clearDelegatesAndCancel];
-//            }];
-//        
-//        [request setDownloadSizeIncrementedBlock:^(long long size) {
-//            if (downloadCallback) {
-//            downloadCallback(size, request.partialDownloadSize);
-//            }
-//            }];
-//        [request startAsynchronous];
+        request.downloadDestinationPath = kAppCaches.stringByAppendingPathComponent("ACDownload")
+        request.temporaryFileDownloadPath = fAppTmpAddTo("ACTemp")
+        request.setCompletionBlock({
+            if completeCallback {
+                var error: NSError?
+                var result: AnyObject! = NSJSONSerialization.JSONObjectWithData(request.responseData(), options: NSJSONReadingOptions.MutableLeaves, error: &error)
+                completeCallback(result: result as NSDictionary, error: error)
+            }
+            request.clearDelegatesAndCancel()
+            })
+
+        request.setFailedBlock({
+            if completeCallback {
+                completeCallback(result: nil, error: request.error)
+            }
+            request.clearDelegatesAndCancel()
+            })
+        
+        request.setDownloadSizeIncrementedBlock({
+            (size: Int64) -> Void in
+            if downloadCallback {
+                downloadCallback(size: size, total: request.partialDownloadSize)
+            }
+            })
+        request.startAsynchronous()
     }
     
     
@@ -144,7 +143,7 @@ class ACNetworking: NSObject {
     首先调用这两个方法
     */
     class func requestLoadingFinish(requestBlock: ACRequestCompleteCallback!) {
-        
+        objc_setAssociatedObject(self, kACASIRequestFinishKey, requestBlock, UInt(OBJC_ASSOCIATION_COPY));
     }
     
     class func queueLoadingFinish(queueBlock: ACQueueCompleteCallback!) {
