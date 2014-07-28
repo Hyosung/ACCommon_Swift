@@ -22,7 +22,6 @@ let kPlaceholderColor: UIColor = fColorRGB(288.0, 288.0, 288.0)
 /*
 用于生成浮点型的随机数
 */
-
 let ARC4RANDOM_MAX = 0x100000000
 
 class ACUtilitys: NSObject {
@@ -369,14 +368,14 @@ class ACUtilitys: NSObject {
     知道高度，重置图片大小
     */
     class func resizedImageWithImage(image: UIImage!, toHeight: CGFloat) -> UIImage {
-        
+        return ACUtilitys.resizedImageWithImage(image, isHeight: YES, number: toHeight)
     }
     
     /*
     知道宽度，重置图片大小
     */
     class func resizedImageWithImage(image: UIImage!, toWidth: CGFloat) -> UIImage {
-    
+        return ACUtilitys.resizedImageWithImage(image, isHeight: NO, number: toWidth)
     }
     
     /**
@@ -394,16 +393,8 @@ class ACUtilitys: NSObject {
     }
     
     class func reckonWithSize(size: CGSize, isHeight: Bool, number: CGFloat) -> CGFloat {
-        var newNumber: CGFloat = 0.0
-        var scale1: CGFloat = size.height / size.width
-        var scale2: CGFloat = size.width / size.height
-        if !isHeight {
-            newNumber = scale1 * number
-        }
-        else {
-            newNumber = scale2 * number
-        }
-        return newNumber
+        var scale: CGFloat = isHeight ? (size.width / size.height) : (size.height / size.width)
+        return scale * number
     }
     
     /*
@@ -428,6 +419,7 @@ class ACUtilitys: NSObject {
     */
     class func drawMask(maskColor: UIColor!, foregroundColor: UIColor!, imageNamedOrExt: NSString!) -> UIImage {
     
+        return ACUtilitys.drawMask(maskColor, foregroundColor: foregroundColor, image: ACUtilitys.imageCacheNamed(imageNamedOrExt))
     }
     
     /*
@@ -437,14 +429,62 @@ class ACUtilitys: NSObject {
     @image 图片对象
     */
     class func drawMask(maskColor: UIColor!, foregroundColor: UIColor!, image: UIImage!) -> UIImage {
-    
+        var imageRect = CGRectMake(0.0, 0.0, CGFloat(CGImageGetWidth(image.CGImage)), CGFloat(CGImageGetHeight(image.CGImage)))
+        
+        // 创建位图上下文
+        var context = CGBitmapContextCreate(nil, // 内存图片数据
+            CGImageGetWidth(image.CGImage),  // 宽
+            CGImageGetHeight(image.CGImage), // 高
+            8, // 色深
+            0, // 每行字节数
+            CGImageGetColorSpace(image.CGImage), // 颜色空间
+            CGImageGetBitmapInfo(image.CGImage)/*kCGImageAlphaPremultipliedLast*/) // alpha通道，RBGA
+        
+        // 设置当前上下文填充色为白色（RGBA值）
+        CGContextSetRGBFillColor(
+            context,
+            CGColorGetComponents(foregroundColor.CGColor)[0],
+            CGColorGetComponents(foregroundColor.CGColor)[1],
+            CGColorGetComponents(foregroundColor.CGColor)[2],
+            CGColorGetAlpha(foregroundColor.CGColor))
+        
+        CGContextFillRect(context,imageRect)
+        
+        // 用 originImage 作为 clipping mask（选区）
+        
+        CGContextClipToMask(context,imageRect, image.CGImage)
+        
+        // 设置当前填充色为黑色
+        CGContextSetRGBFillColor(
+            context,
+            CGColorGetComponents(maskColor.CGColor)[0],
+            CGColorGetComponents(maskColor.CGColor)[1],
+            CGColorGetComponents(maskColor.CGColor)[2],
+            CGColorGetAlpha(maskColor.CGColor))
+        
+        // 在clipping mask上填充黑色
+        
+        CGContextFillRect(context,imageRect)
+        
+        var newCGImage = CGBitmapContextCreateImage(context)
+        var newImage = UIImage(CGImage: newCGImage, scale: image.scale, orientation: image.imageOrientation)
+        
+        // Cleanup
+        
+//        CGContextRelease(context);
+//        
+//        CGImageRelease(newCGImage);
+        
+        //    [UIImagePNGRepresentation(newImage) writeToFile:[XW_Document stringByAppendingPathComponent:[NSString stringWithFormat:@"__%@",nameOrExt]] atomically:YES];
+        
+        return newImage
     }
     
     /*
     根据传入的size绘制占位图 默认背景色 RGBCOLOR(228, 228, 228)
     */
     class func drawPlaceholderWithSize(size: CGSize) -> UIImage {
-    
+        return ACUtilitys.drawPlaceholderWithSize(size, bgcolor: kPlaceholderColor)
     }
     
     /*
@@ -452,14 +492,37 @@ class ACUtilitys: NSObject {
     @color 背景色
     */
     class func drawPlaceholderWithSize(size: CGSize, bgcolor: UIColor!) -> UIImage {
-    
+        var oldImage = ACUtilitys.imageCacheNamed(kPlaceholderName)
+        
+        UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen().scale)
+        
+        var contextRef = UIGraphicsGetCurrentContext()
+        bgcolor.setFill()
+        CGContextFillRect(contextRef, CGRectMake(0, 0, size.width, size.height))
+        var height = min(size.height, oldImage.size.height)
+        var newSize = CGSizeMake(height - 20.0, height - 20.0)
+        
+        if newSize.width >= size.width {
+            newSize = CGSizeMake(size.width - 20, size.width - 20)
+        }
+        
+        CGContextTranslateCTM(contextRef, 0, size.height)
+        CGContextScaleCTM(contextRef, 1, -1)
+        CGContextDrawImage(contextRef, CGRectMake(size.width / 2.0 - newSize.width / 2.0,
+            size.height / 2.0 - newSize.height / 2.0,
+            newSize.width,
+            newSize.height), oldImage.CGImage)
+        var newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
     /*
     根据传入的颜色绘制纯色图片 默认大小 {57，57}
     */
     class func drawingColor(color: UIColor!) -> UIImage {
-    
+        return ACUtilitys.drawingColor(color, size: CGSizeMake(57.0, 57.0))
     }
     
     /*
@@ -468,14 +531,51 @@ class ACUtilitys: NSObject {
     @size 图片大小
     */
     class func drawingColor(color: UIColor!, size: CGSize) -> UIImage {
-    
+        UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen().scale)
+        color.setFill()
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, size.width, size.height))
+        var image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
     
     /*
     绘制渐变图
     */
-    class func drawGradientColor(p_clipRect: CGRect, options p_options: CGGradientDrawingOptions, colors p_colors: NSArray!) -> UIImage {
     
+    /**
+    * 绘制背景色渐变的矩形，p_colors渐变颜色设置，集合中存储UIColor对象（创建Color时一定用三原色来创建）
+    **/
+    class func drawGradientColor(p_clipRect: CGRect, options p_options: CGGradientDrawingOptions, colors p_colors: NSArray!) -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(p_clipRect.size, NO, UIScreen.mainScreen().scale)
+        var p_context = UIGraphicsGetCurrentContext()
+        
+        CGContextSaveGState(p_context)// 保持住现在的context
+        CGContextClipToRect(p_context, p_clipRect)// 截取对应的context
+        var colorCount = p_colors.count
+        var numOfComponents = 4
+        var rgb = CGColorSpaceCreateDeviceRGB()
+        var colorComponents: [CGFloat] = []
+        
+        for var i = 0; i < colorCount; i++ {
+            var color: UIColor = p_colors[i] as UIColor
+            var temcolorRef = color.CGColor
+            var components: ConstUnsafePointer<CGFloat> = CGColorGetComponents(temcolorRef)
+            for var j = 0; j < numOfComponents; ++j {
+                colorComponents[i * numOfComponents + j] = components[j]
+            }
+        }
+        var gradient = CGGradientCreateWithColorComponents(rgb, colorComponents, nil, UInt(colorCount))
+        var startPoint = p_clipRect.origin
+        var endPoint = CGPointMake(CGRectGetMinX(p_clipRect), CGRectGetMaxY(p_clipRect))
+        CGContextDrawLinearGradient(p_context, gradient, startPoint, endPoint, p_options)
+        var newImage = UIGraphicsGetImageFromCurrentImageContext()
+        CGContextRestoreGState(p_context)// 恢复到之前的context
+        UIGraphicsEndImageContext()
+        
+        //    [UIImagePNGRepresentation(newImage) writeToFile:[XW_Document stringByAppendingPathComponent:@"xw.png"] atomically:YES];
+        return newImage
     }
     
     /**
@@ -485,8 +585,28 @@ class ACUtilitys: NSObject {
     @string 当前对象中的字符串
     @range 当前对象的范围大小
     */
-    class func isOutNumber(number: NSInteger, objcect: AnyObject!, range: NSRange) -> Bool {
+    class func isOutNumber(number: NSInteger, objcect: AnyObject!, string: NSString!, range: NSRange) -> Bool {
+        //string就是此时输入的那个字符textField就是此时正在输入的那个输入框返回YES就是可以改变输入框的值NO相反
+        
+        if string.isEqualToString("\n") { //按会车可以改变
+            return YES
+        }
+        var textField: UITextField!
+        if objcect is UITextField || objcect is UITextView {
+                textField = objcect as UITextField
+        }
+        else {
+            assert(textField != nil, "对象必须是UITextField或者UITextView")
+        }
     
+        var toBeString: NSString = textField.text.bridgeToObjectiveC()
+        toBeString = toBeString.stringByReplacingCharactersInRange(range, withString: string)//得到输入框的内容
+        
+        if toBeString.length > number { //如果输入框内容大于number则弹出警告
+            textField.text = toBeString.substringToIndex(number)
+            return NO
+        }
+        return YES
     }
     
     /*
