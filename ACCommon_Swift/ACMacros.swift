@@ -8,6 +8,9 @@
 
 import Foundation
 
+let YES = Bool(1)
+let NO = Bool(0)
+
 let kACAppleID    : NSString = "Apple ID"
 let kACCompanyName: NSString = "Company Name"
 
@@ -25,6 +28,7 @@ func fDataURLString(text: NSString) -> NSString {
     if text != nil && text.isKindOfClass(NSClassFromString("NSString")) {
         return "http://app.zontenapp.com.cn/" + text
     }
+    
     return "http://app.zontenapp.com.cn/"
 }
 
@@ -104,6 +108,13 @@ func fAppTmpAddTo(path: NSString) -> NSString {
     return NSTemporaryDirectory().stringByAppendingPathComponent(path)
 }
 
+func UUID() -> NSString{
+    var uuid: CFUUIDRef = CFUUIDCreate(kCFAllocatorDefault)
+    var uuidStr: CFStringRef = CFUUIDCreateString(kCFAllocatorDefault, uuid)
+    var uuidText: NSString = uuidStr
+    return uuidStr
+}
+
 let kAppCaches  : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as NSString
 let kAppLibrary : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as NSString
 let kAppDocument: NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as NSString
@@ -114,4 +125,10 @@ let kCurrentLanguage     : NSString = NSLocale.preferredLanguages()[0] as NSStri
 let kStatusOrientation   : UIInterfaceOrientation = vApplication.statusBarOrientation
 let kCurrentOrientation  : UIDeviceOrientation = vCurrentDevice.orientation
 let kCurrentSystemVersion: NSString = vCurrentDevice.systemVersion
+
+let sharedUserInterfaceIdiom = (vCurrentDevice.respondsToSelector("userInterfaceIdiom") ? vCurrentDevice.userInterfaceIdiom : UIUserInterfaceIdiom.Phone)
+
+let isiPad   = (sharedUserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
+let iPhone5  = (UIScreen.instancesRespondToSelector("currentMode") ? CGSizeEqualToSize(CGSizeMake(640.0, 1136.0), UIScreen.mainScreen().currentMode.size) : false)
+let isRetina = (UIScreen.mainScreen().scale == 2)
 

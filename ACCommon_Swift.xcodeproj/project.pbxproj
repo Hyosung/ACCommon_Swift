@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		071D7C435A724F63801FAC64 /* libPods-ACCommon_Swift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DFC8874E694EA6ADB69B11 /* libPods-ACCommon_Swift.a */; };
+		DD2832EE1985FFF000B77A58 /* ACUtilitys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */; };
 		DD2984B019820BC10007C45C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2984AF19820BC10007C45C /* AppDelegate.swift */; };
 		DD2984C319820BC30007C45C /* ACCommon_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2984C219820BC30007C45C /* ACCommon_SwiftTests.swift */; };
 		DD29858A19821F340007C45C /* NSData+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D019821F340007C45C /* NSData+ACAdditions.m */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		C4C27082CDE9465CA871538A /* Pods-ACCommon_Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACCommon_Swift.xcconfig"; path = "Pods/Pods-ACCommon_Swift.xcconfig"; sourceTree = "<group>"; };
 		D3DFC8874E694EA6ADB69B11 /* libPods-ACCommon_Swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ACCommon_Swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACUtilitys.swift; sourceTree = "<group>"; };
 		DD2984AA19820BC10007C45C /* ACCommon_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACCommon_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2984AE19820BC10007C45C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD2984AF19820BC10007C45C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				DD2984AF19820BC10007C45C /* AppDelegate.swift */,
 				DD2984AD19820BC10007C45C /* Supporting Files */,
 				DD33BAE31982634200CBC849 /* ACMacros.swift */,
+				DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */,
 			);
 			path = ACCommon_Swift;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				DD29858E19821F340007C45C /* NSString+ACAdditions.m in Sources */,
 				DD2985B819821F340007C45C /* SDWebImageDownloader.m in Sources */,
 				DD2985D319821F340007C45C /* ACTableViewCell.m in Sources */,
+				DD2832EE1985FFF000B77A58 /* ACUtilitys.swift in Sources */,
 				DD29859219821F340007C45C /* UIImage+ACAdditions.m in Sources */,
 				DD2985B619821F340007C45C /* UIImage+WebP.m in Sources */,
 				DD2985B119821F340007C45C /* MKAnnotationView+WebCache.m in Sources */,
