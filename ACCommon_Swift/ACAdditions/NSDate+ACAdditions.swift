@@ -37,6 +37,7 @@ extension NSDate {
     }
     
     func era() -> NSString {
+        return NSString(self.dateComponents().era)
     }
     
     func year() -> NSString {
