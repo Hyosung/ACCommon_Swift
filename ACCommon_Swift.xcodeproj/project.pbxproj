@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		071D7C435A724F63801FAC64 /* libPods-ACCommon_Swift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DFC8874E694EA6ADB69B11 /* libPods-ACCommon_Swift.a */; };
+		DD022AE81987502000CA6CE9 /* ACTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AE71987502000CA6CE9 /* ACTextField.swift */; };
+		DD022AEA198774CF00CA6CE9 /* ACLargerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AE9198774CF00CA6CE9 /* ACLargerImageView.swift */; };
+		DD022AEC19878A7A00CA6CE9 /* ACTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AEB19878A7A00CA6CE9 /* ACTableViewCell.swift */; };
+		DD022AEE19879E1500CA6CE9 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AED19879E1500CA6CE9 /* ACTextView.swift */; };
+		DD022AF01987AA1100CA6CE9 /* NSDate+ACAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AEF1987AA1100CA6CE9 /* NSDate+ACAdditions.swift */; };
 		DD2832EE1985FFF000B77A58 /* ACUtilitys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */; };
 		DD2984B019820BC10007C45C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2984AF19820BC10007C45C /* AppDelegate.swift */; };
 		DD2984C319820BC30007C45C /* ACCommon_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2984C219820BC30007C45C /* ACCommon_SwiftTests.swift */; };
@@ -26,7 +31,6 @@
 		DD29859619821F340007C45C /* ACBaseCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984EA19821F340007C45C /* ACBaseCollectionController.m */; };
 		DD29859719821F340007C45C /* ACBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984EC19821F340007C45C /* ACBaseController.m */; };
 		DD29859819821F340007C45C /* ACBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984EE19821F340007C45C /* ACBaseTableController.m */; };
-		DD29859919821F340007C45C /* ACTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984F419821F340007C45C /* ACTextField.m */; };
 		DD2985AB19821F340007C45C /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29852219821F340007C45C /* ChineseToPinyin.m */; };
 		DD2985AC19821F340007C45C /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29852519821F340007C45C /* GTMBase64.m */; };
 		DD2985AD19821F340007C45C /* PullingRefreshTableView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DD29852819821F340007C45C /* PullingRefreshTableView.bundle */; };
@@ -47,10 +51,6 @@
 		DD2985BD19821F340007C45C /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29854F19821F340007C45C /* SDWebImagePrefetcher.m */; };
 		DD2985CF19821F340007C45C /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29857A19821F340007C45C /* TTTAttributedLabel.m */; };
 		DD2985D019821F340007C45C /* ACNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29857E19821F340007C45C /* ACNetworking.m */; };
-		DD2985D119821F340007C45C /* ACUtilitys.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29858119821F340007C45C /* ACUtilitys.m */; };
-		DD2985D219821F340007C45C /* ACLargerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29858419821F340007C45C /* ACLargerImageView.m */; };
-		DD2985D319821F340007C45C /* ACTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29858619821F340007C45C /* ACTableViewCell.m */; };
-		DD2985D419821F340007C45C /* ACTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29858819821F340007C45C /* ACTextView.m */; };
 		DD2985D8198223BB0007C45C /* ACNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2985D7198223BB0007C45C /* ACNetworking.swift */; };
 		DD33BAE41982634200CBC849 /* ACMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD33BAE31982634200CBC849 /* ACMacros.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +68,11 @@
 /* Begin PBXFileReference section */
 		C4C27082CDE9465CA871538A /* Pods-ACCommon_Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACCommon_Swift.xcconfig"; path = "Pods/Pods-ACCommon_Swift.xcconfig"; sourceTree = "<group>"; };
 		D3DFC8874E694EA6ADB69B11 /* libPods-ACCommon_Swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ACCommon_Swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD022AE71987502000CA6CE9 /* ACTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTextField.swift; sourceTree = "<group>"; };
+		DD022AE9198774CF00CA6CE9 /* ACLargerImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACLargerImageView.swift; sourceTree = "<group>"; };
+		DD022AEB19878A7A00CA6CE9 /* ACTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTableViewCell.swift; sourceTree = "<group>"; };
+		DD022AED19879E1500CA6CE9 /* ACTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
+		DD022AEF1987AA1100CA6CE9 /* NSDate+ACAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ACAdditions.swift"; sourceTree = "<group>"; };
 		DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACUtilitys.swift; sourceTree = "<group>"; };
 		DD2984AA19820BC10007C45C /* ACCommon_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACCommon_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2984AE19820BC10007C45C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,9 +114,6 @@
 		DD2984EE19821F340007C45C /* ACBaseTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBaseTableController.m; sourceTree = "<group>"; };
 		DD2984EF19821F340007C45C /* ACCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCommon.h; sourceTree = "<group>"; };
 		DD2984F019821F340007C45C /* ACCommonSF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCommonSF.h; sourceTree = "<group>"; };
-		DD2984F219821F340007C45C /* ACControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACControls.h; sourceTree = "<group>"; };
-		DD2984F319821F340007C45C /* ACTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTextField.h; sourceTree = "<group>"; };
-		DD2984F419821F340007C45C /* ACTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTextField.m; sourceTree = "<group>"; };
 		DD2984F619821F340007C45C /* ACExternals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACExternals.h; sourceTree = "<group>"; };
 		DD29852119821F340007C45C /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
 		DD29852219821F340007C45C /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
@@ -156,15 +158,6 @@
 		DD29857D19821F340007C45C /* ACNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACNetworking.h; sourceTree = "<group>"; };
 		DD29857E19821F340007C45C /* ACNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNetworking.m; sourceTree = "<group>"; };
 		DD29857F19821F340007C45C /* ACPrefixs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPrefixs.h; sourceTree = "<group>"; };
-		DD29858019821F340007C45C /* ACUtilitys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUtilitys.h; sourceTree = "<group>"; };
-		DD29858119821F340007C45C /* ACUtilitys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUtilitys.m; sourceTree = "<group>"; };
-		DD29858319821F340007C45C /* ACLargerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLargerImageView.h; sourceTree = "<group>"; };
-		DD29858419821F340007C45C /* ACLargerImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLargerImageView.m; sourceTree = "<group>"; };
-		DD29858519821F340007C45C /* ACTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTableViewCell.h; sourceTree = "<group>"; };
-		DD29858619821F340007C45C /* ACTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTableViewCell.m; sourceTree = "<group>"; };
-		DD29858719821F340007C45C /* ACTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTextView.h; sourceTree = "<group>"; };
-		DD29858819821F340007C45C /* ACTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTextView.m; sourceTree = "<group>"; };
-		DD29858919821F340007C45C /* ACViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACViews.h; sourceTree = "<group>"; };
 		DD2985D7198223BB0007C45C /* ACNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNetworking.swift; sourceTree = "<group>"; };
 		DD33BAE31982634200CBC849 /* ACMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACMacros.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,8 +222,6 @@
 				DD29857B19821F340007C45C /* ACMacros.h */,
 				DD29857C19821F340007C45C /* ACNetworking */,
 				DD29857F19821F340007C45C /* ACPrefixs.h */,
-				DD29858019821F340007C45C /* ACUtilitys.h */,
-				DD29858119821F340007C45C /* ACUtilitys.m */,
 				DD29858219821F340007C45C /* ACViews */,
 				DD2984AF19820BC10007C45C /* AppDelegate.swift */,
 				DD2984AD19820BC10007C45C /* Supporting Files */,
@@ -292,6 +283,7 @@
 				DD2984E219821F340007C45C /* UIImageView+ACAdditions.m */,
 				DD2984E319821F340007C45C /* UIView+ACAdditions.h */,
 				DD2984E419821F340007C45C /* UIView+ACAdditions.m */,
+				DD022AEF1987AA1100CA6CE9 /* NSDate+ACAdditions.swift */,
 			);
 			path = ACAdditions;
 			sourceTree = "<group>";
@@ -321,9 +313,7 @@
 		DD2984F119821F340007C45C /* ACControls */ = {
 			isa = PBXGroup;
 			children = (
-				DD2984F219821F340007C45C /* ACControls.h */,
-				DD2984F319821F340007C45C /* ACTextField.h */,
-				DD2984F419821F340007C45C /* ACTextField.m */,
+				DD022AE71987502000CA6CE9 /* ACTextField.swift */,
 			);
 			path = ACControls;
 			sourceTree = "<group>";
@@ -460,13 +450,9 @@
 		DD29858219821F340007C45C /* ACViews */ = {
 			isa = PBXGroup;
 			children = (
-				DD29858319821F340007C45C /* ACLargerImageView.h */,
-				DD29858419821F340007C45C /* ACLargerImageView.m */,
-				DD29858519821F340007C45C /* ACTableViewCell.h */,
-				DD29858619821F340007C45C /* ACTableViewCell.m */,
-				DD29858719821F340007C45C /* ACTextView.h */,
-				DD29858819821F340007C45C /* ACTextView.m */,
-				DD29858919821F340007C45C /* ACViews.h */,
+				DD022AE9198774CF00CA6CE9 /* ACLargerImageView.swift */,
+				DD022AEB19878A7A00CA6CE9 /* ACTableViewCell.swift */,
+				DD022AED19879E1500CA6CE9 /* ACTextView.swift */,
 			);
 			path = ACViews;
 			sourceTree = "<group>";
@@ -615,17 +601,18 @@
 				DD29858F19821F340007C45C /* UIAlertView+ACAdditions.m in Sources */,
 				DD2985BC19821F340007C45C /* SDWebImageManager.m in Sources */,
 				DD2985BA19821F340007C45C /* SDWebImageCompat.m in Sources */,
+				DD022AEA198774CF00CA6CE9 /* ACLargerImageView.swift in Sources */,
 				DD2985B219821F340007C45C /* NSData+ImageContentType.m in Sources */,
 				DD29859719821F340007C45C /* ACBaseController.m in Sources */,
 				DD2985B319821F340007C45C /* UIButton+WebCache.m in Sources */,
 				DD29859519821F340007C45C /* ACAnimation.m in Sources */,
 				DD2985AC19821F340007C45C /* GTMBase64.m in Sources */,
-				DD2985D119821F340007C45C /* ACUtilitys.m in Sources */,
 				DD29859019821F340007C45C /* UIButton+ACAdditions.m in Sources */,
 				DD2985BB19821F340007C45C /* SDWebImageDecoder.m in Sources */,
 				DD2985B419821F340007C45C /* UIImage+GIF.m in Sources */,
 				DD33BAE41982634200CBC849 /* ACMacros.swift in Sources */,
-				DD2985D419821F340007C45C /* ACTextView.m in Sources */,
+				DD022AEE19879E1500CA6CE9 /* ACTextView.swift in Sources */,
+				DD022AE81987502000CA6CE9 /* ACTextField.swift in Sources */,
 				DD29859319821F340007C45C /* UIImageView+ACAdditions.m in Sources */,
 				DD2985B019821F340007C45C /* SDImageCache.m in Sources */,
 				DD2985D019821F340007C45C /* ACNetworking.m in Sources */,
@@ -639,20 +626,19 @@
 				DD29859619821F340007C45C /* ACBaseCollectionController.m in Sources */,
 				DD2985BD19821F340007C45C /* SDWebImagePrefetcher.m in Sources */,
 				DD29859119821F340007C45C /* UIColor+ACAdditions.m in Sources */,
-				DD2985D219821F340007C45C /* ACLargerImageView.m in Sources */,
+				DD022AF01987AA1100CA6CE9 /* NSDate+ACAdditions.swift in Sources */,
 				DD29858B19821F340007C45C /* NSDate+ACAdditions.m in Sources */,
+				DD022AEC19878A7A00CA6CE9 /* ACTableViewCell.swift in Sources */,
 				DD29858D19821F340007C45C /* NSObject+ACAdditions.m in Sources */,
 				DD29859819821F340007C45C /* ACBaseTableController.m in Sources */,
 				DD2985B519821F340007C45C /* UIImage+MultiFormat.m in Sources */,
 				DD29858E19821F340007C45C /* NSString+ACAdditions.m in Sources */,
 				DD2985B819821F340007C45C /* SDWebImageDownloader.m in Sources */,
-				DD2985D319821F340007C45C /* ACTableViewCell.m in Sources */,
 				DD2832EE1985FFF000B77A58 /* ACUtilitys.swift in Sources */,
 				DD29859219821F340007C45C /* UIImage+ACAdditions.m in Sources */,
 				DD2985B619821F340007C45C /* UIImage+WebP.m in Sources */,
 				DD2985B119821F340007C45C /* MKAnnotationView+WebCache.m in Sources */,
 				DD2985AB19821F340007C45C /* ChineseToPinyin.m in Sources */,
-				DD29859919821F340007C45C /* ACTextField.m in Sources */,
 				DD2985B719821F340007C45C /* UIImageView+WebCache.m in Sources */,
 				DD2985CF19821F340007C45C /* TTTAttributedLabel.m in Sources */,
 			);

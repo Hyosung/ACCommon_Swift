@@ -24,8 +24,18 @@ let kPlaceholderColor: UIColor = fColorRGB(288.0, 288.0, 288.0)
 */
 let ARC4RANDOM_MAX = 0x100000000
 
+var hostReach: Reachability?
+var isSetupNetwork: Bool? = NO
+
 class ACUtilitys: NSObject {
     
+    deinit {
+        if isSetupNetwork {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: kReachabilityChangedNotification, object: nil)
+            hostReach!.stopNotifier()
+            hostReach = nil
+        }
+    }
     class func sharedACUtilitys() -> ACUtilitys {
         
         struct once {
@@ -40,7 +50,10 @@ class ACUtilitys: NSObject {
     }
     
     class func setupNetworkNotification() {
-        
+        isSetupNetwork = YES
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: kReachabilityChangedNotification, object: nil)
+        hostReach = Reachability(hostname: "http://www.baidu.com")
+        hostReach!.startNotifier()
     }
     
     /*
@@ -48,13 +61,14 @@ class ACUtilitys: NSObject {
     */
     class func isNotNetwork() -> Bool {
         
+        return (!ACUtilitys.isEnable3G() && !ACUtilitys.isEnableWiFi())
     }
     
     /*
     是否启动WiFi
     */
     class func isEnableWiFi() -> Bool {
-        
+         return (Reachability.reachabilityForLocalWiFi().currentReachabilityStatus() != NetworkStatus.NotReachable)
     }
     
     /*
@@ -62,6 +76,7 @@ class ACUtilitys: NSObject {
     */
     class func isEnable3G() -> Bool {
         
+        return (Reachability.reachabilityForInternetConnection().currentReachabilityStatus() != NetworkStatus.NotReachable)
     }
     
     /**
@@ -194,17 +209,18 @@ class ACUtilitys: NSObject {
     /**
     gif图片解析
     */
-  /*  class func gifParseWithGifData(gifData: NSData!) -> NSArray! {
+   class func gifParseWithGifData(gifData: NSData!) -> NSArray! {
         if !gifData {
             return nil
         }
-        
+    
         //加载gif
-        var gif: CGImageSourceRef = CGImageSourceCreateWithData(gifData, nil)
+        var gif: CGImageSourceRef = CGImageSourceCreateWithData((gifData as CFDataRef), nil).takeRetainedValue()
         
         //获取gif的各种属性
-        var gifprops = CGImageSourceCopyPropertiesAtIndex(gif, UInt(0), nil)
-        
+        var gifprops = CGImageSourceCopyPropertiesAtIndex(gif, UInt(0), nil).takeRetainedValue()
+        CFShow(gifprops)
+    
         //获取gif中静态图片的数量
         var count: size_t = CGImageSourceGetCount(gif)
         
@@ -212,7 +228,7 @@ class ACUtilitys: NSObject {
         var images: NSMutableArray = NSMutableArray(capacity: Int(count))
         
         for var index: size_t = 0; index < count; index++ {
-            var ref: CGImageRef = CGImageSourceCreateImageAtIndex(gif, index, nil)
+            var ref: CGImageRef = CGImageSourceCreateImageAtIndex(gif, index, nil).takeRetainedValue()
             var img: UIImage = UIImage(CGImage: ref)
             
             if img != nil {
@@ -221,7 +237,7 @@ class ACUtilitys: NSObject {
         }
         
         return images
-    } */
+    }
     
     //用来辨别设备所使用网络的运营商
     class func checkCarrier() -> NSString {
@@ -614,7 +630,32 @@ class ACUtilitys: NSObject {
     @size 文件大小 字节（bytes）
     */
     class func formattedFileSize(size: UInt64) -> NSString {
-    
+        var formattedStr: NSString = ""
+        if size <= 0 {
+            formattedStr = NSLocalizedString("Empty", tableName:nil , bundle:NSBundle.mainBundle() , value:"" , comment: "")
+        }
+        else {
+            if size > 0 && size < 1024 {
+                formattedStr = NSString(format: "%qu bytes", size)
+            }
+            else {
+                
+                if size >= 1024 && size < UInt64(pow(1024.0, 2.0)) {
+                    formattedStr = NSString(format: "%.1f KB", (Float(size) / 1024.0))
+                }
+                else {
+                    if size >= UInt64(pow(1024.0, 2.0)) && size < UInt64(pow(1024.0, 3.0)) {
+                        formattedStr = NSString(format: "%.2f MB", (Float(size) / pow(1024.0, 2.0)))
+                    }
+                    else {
+                        if size >= UInt64(pow(1024.0, 3.0)) {
+                            formattedStr = NSString(format: "%.3f GB", (Float(size) / pow(1024.0, 3.0)))
+                        }
+                    }
+                }
+            }
+        }
+        return formattedStr
     }
     
     /*
@@ -622,8 +663,35 @@ class ACUtilitys: NSObject {
     @url 在Apple Store 上请求的链接
     @block-releaseInfo 字典中包含了应用在Apple Store上的下载地址和更新的信息、最新版本号，对应的key是trackViewUrl、releaseNotes、version
     */
-    class func automaticCheckVersion(((releaseInfo: NSDictionary!) -> Void)!, url: NSString!) {
-    
+    class func automaticCheckVersion(block: ((releaseInfo: NSDictionary!) -> Void)!, url: NSString!) {
+        var infoDic = NSBundle.mainBundle().infoDictionary
+        
+        var currentVersion: NSString = infoDic["CFBundleShortVersionString"] as NSString
+        var urlString: NSString = url
+        var request: NSMutableURLRequest = NSMutableURLRequest()
+        request.URL = NSURL.URLWithString(urlString)
+        request.HTTPMethod = "POST"
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler:{
+            (response: NSURLResponse!, data: NSData!, error: NSError!) in
+            
+            var dic: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+            var infoArray: NSArray = dic["results"] as NSArray
+            if infoArray.count > 0 {
+                var releaseInfo: NSDictionary = infoArray[0] as NSDictionary
+                var lastVersion: NSString = releaseInfo["version"] as NSString
+                
+                if lastVersion.compare(currentVersion) == NSComparisonResult.OrderedAscending {
+                    var trackViewURLString: NSString = releaseInfo["trackViewUrl"] as NSString
+                    var releaseNotes: NSString = releaseInfo["releaseNotes"] as NSString
+                    
+                    if block {
+                        block(releaseInfo: ["trackViewUrl": trackViewURLString,
+                                            "version": lastVersion,
+                                            "releaseNotes": releaseNotes])
+                    }
+                }
+            }
+            })
     }
     
     /*
@@ -631,37 +699,102 @@ class ACUtilitys: NSObject {
     有最新版本就从消息中心发出消息 消息名称是 NotificationAppUpdate
     */
     class func onCheckVersion(url: NSString!) {
+        var infoDic = NSBundle.mainBundle().infoDictionary
         
+        var currentVersion: NSString = infoDic["CFBundleShortVersionString"] as NSString
+        var urlString: NSString = url
+        var request: NSMutableURLRequest = NSMutableURLRequest()
+        request.URL = NSURL.URLWithString(urlString)
+        request.HTTPMethod = "POST"
+        var urlResponse: NSURLResponse? = nil
+        var error: NSError? = nil
+        var recervedData: NSData = NSURLConnection.sendSynchronousRequest(request, returningResponse: &urlResponse, error: &error)
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            if recervedData != nil {
+                var dic: NSDictionary = NSJSONSerialization.JSONObjectWithData(recervedData, options: NSJSONReadingOptions.AllowFragments, error: nil) as NSDictionary
+                var infoArray: NSArray = dic["results"] as NSArray
+                if infoArray.count > 0 {
+                    var releaseInfo: NSDictionary = infoArray[0] as NSDictionary
+                    var lastVersion: NSString = releaseInfo["version"] as NSString
+                    
+                    if lastVersion.compare(currentVersion) == NSComparisonResult.OrderedAscending {
+                        var trackViewURL: NSString = releaseInfo["trackViewUrl"] as NSString
+                        var releaseNotes: NSString = releaseInfo["releaseNotes"] as NSString
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName("NotificationAppUpdate", object: self, userInfo: ["trackViewUrl": trackViewURL,
+                                       "version": lastVersion,
+                                       "releaseNotes": releaseNotes])
+                    }
+                    else {
+                        var alert: UIAlertView = UIAlertView(title: "软件更新", message: "当前版本已是最新版本", delegate: nil, cancelButtonTitle: "确定")
+                        alert.show()
+                    }
+                }
+                else {
+                    
+                    var alert: UIAlertView = UIAlertView(title: "软件更新", message: "当前软件还未上线", delegate: nil, cancelButtonTitle: "确定")
+                    alert.show()
+                }
+            }
+            else {
+                var alert: UIAlertView = UIAlertView(title: "软件更新", message: "网络连接失败", delegate: nil, cancelButtonTitle: "确定")
+                alert.show()
+            }
+            })
     }
     
     /*
     跳转到App Store应用的评分页面
-    @url 默认 SCORE_URL
+    @url 默认 SCORE_URL kScoreURL
     */
-    class func applicationRatings(url: NSString!) {
-        
+    class func applicationRatings(url: NSString! = kScoreURL) {
+        vApplication.openURL(NSURL(string: url))
     }
     
     /*
     应用在 App Store的下载地址
     @appid 应用的Apple ID
     */
-    class func appStoreUrl(appid: NSString!) -> NSString {
-    
+    class func appStoreUrl(appid: NSString! = kACAppleID) -> NSString {
+        var info: NSDictionary = NSBundle.mainBundle().infoDictionary
+        var displayName: NSString = info["CFBundleDisplayName"] as NSString
+//        var displayName: NSString = info["CFBundleName"] as NSString
+        //https://itunes.apple.com/us/app/bu-yi-li-ji/id647152789?mt=8&uo=4
+        var spliceArray: NSMutableArray = NSMutableArray(capacity: 0)
+        for var i = 0; i < displayName.length; i++ {
+            var spliceText: NSString = NSString(format: "%C", displayName.characterAtIndex(i))
+            spliceArray.addObject(ChineseToPinyin.pinyinFromChiniseString(spliceText))
+        }
+        
+        var appStoreURLString: NSString = NSString(format: "https://itunes.apple.com/cn/app/%@/id%@?mt=8",spliceArray.componentsJoinedByString("-"), appid)
+        return appStoreURLString.lowercaseString
     }
     
     /*
     设置导航栏的背景 支持大部分iOS版本
     */
     class func setNavigationBar(navBar: UINavigationBar!, backgroundImage: UIImage!) {
-    
+        // Insert ImageView
+        var imgv: UIImageView = UIImageView(image: backgroundImage)
+        imgv.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
+        imgv.frame = navBar.bounds
+        ACUtilitys.setNavigationBar(navBar, contentView: imgv)
     }
     
     /*
     给导航栏添加一个view覆盖在上面
     */
     class func setNavigationBar(navBar: UINavigationBar!, contentView: UIView!) {
-    
+        // Insert View
+        contentView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
+        contentView.frame = navBar.bounds
+        var v: UIView = navBar.subviews[0] as UIView
+        
+        v.layer.zPosition = CGFloat(-FLT_MAX)
+        contentView.layer.zPosition = CGFloat(-FLT_MAX + 1.0)
+        navBar.insertSubview(contentView, atIndex: 1)
     }
     
     /*
@@ -671,15 +804,63 @@ class ACUtilitys: NSObject {
     @content 提示内容
     */
     class func showNoContent(flag: Bool, displayView: UIView!, displayContent: NSString!) {
-    
+        if flag {
+            var label: UILabel! = nil
+            if displayView.viewWithTag(99998) {
+                label = UILabel(frame: CGRectMake(0.0, 0.0, kScreenWidth, kScreenHeight / 4.0))
+                label.tag = 99998
+                label.backgroundColor = UIColor.clearColor()
+                label.textColor = UIColor.lightGrayColor()
+                label.font = UIFont.systemFontOfSize(17.0)
+                label.textAlignment = NSTextAlignment.Center
+                label.center = displayView.center
+                displayView.addSubview(label)
+            }
+            else {
+                label = displayView.viewWithTag(99998) as UILabel
+            }
+            label.alpha = 0.0
+            label.text = displayContent
+            UIView.animateWithDuration(0.3, animations: {
+                label.alpha = 1.0
+                })
+        }
+        else {
+            if displayView.viewWithTag(99998) {
+                var view = displayView.viewWithTag(99998)
+                UIView.animateWithDuration(0.3, animations: {
+                    view.alpha = 0.0
+                    }, completion: {
+                        (finished: Bool) in
+                        view.removeFromSuperview()
+                    })
+            }
+        }
     }
     
     /*
     半角转全角
     @dbc 半角字符串
+    @info 半角中空格的ascii码为32（其余ascii码为33-126），全角中空格的ascii码为12288（其余ascii码为65281-65374）
+        半角与全角之差为65248
+        半角转全角
     */
     class func DBCToSBC(dbc: NSString!) -> NSString {
-    
+        var sbc: NSString = ""
+        for var i = 0; i < dbc.length; i++ {
+            var temp:unichar = dbc.characterAtIndex(i)
+            if temp >= 33 && temp <= 126 {
+                temp = temp + 65248
+                sbc = NSString(format: "%@%C", sbc, temp)
+            }
+            else {
+                if temp == 32 {
+                    temp = 12288
+                }
+                sbc = NSString(format: "%@%C",sbc,temp)
+            }
+        }
+        return sbc
     }
     
     /*
@@ -687,15 +868,32 @@ class ACUtilitys: NSObject {
     @sbc 全角字符串
     */
     class func SBCToDBC(sbc: NSString!) -> NSString {
-    
+        var dbc: NSString = ""
+        for var i = 0; i < sbc.length; i++ {
+            var temp: unichar = sbc.characterAtIndex(i)
+            if temp >= 65281 && temp <= 65374 {
+                temp = temp - 65248
+                dbc = NSString(format: "%@%C",dbc,temp)
+            }
+            else {
+                if temp == 12288 {
+                    temp = 32
+                }
+                dbc = NSString(format: "%@%C",dbc,temp)
+            }
+        }
+        
+        return dbc
     }
     
     /*
     生成from到to之间的随机数
     范围是[from,to) 包含from,不包含to
     */
-    class func getRandomNumber(from: NSInteger, to: NSInteger) -> NSInteger {
-    
+    class func getRandomNumber(#range: (from: NSInteger, to: NSInteger)) -> NSInteger {
+        
+        
+        return range.from + NSInteger(arc4random() % (range.to - range.from + 1))
     }
     
     /*
@@ -703,7 +901,7 @@ class ACUtilitys: NSObject {
     范围是[0,to) 包含0,不包含to
     */
     class func getRandomNumberTo(to: NSInteger) -> NSInteger {
-        
+        return ACUtilitys.getRandomNumber(range: (0, to))
     }
     
     /*
@@ -711,7 +909,9 @@ class ACUtilitys: NSObject {
     范围[from,to) 包含from,不包含to
     默认随机数一位小数点
     */
-    class func getFloatRandomNumber(from: Double, to: Double) -> Double {
-    
+    class func getFloatRandomNumber(#range: (from: Double, to: Double)) -> Double {
+        var randomNumber = range.from + Double(arc4random()) / Double(ARC4RANDOM_MAX) * range.to
+        
+        return NSString(format:"%0.1f", randomNumber).doubleValue
     }
 }

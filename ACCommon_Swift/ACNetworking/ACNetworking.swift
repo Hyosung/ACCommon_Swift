@@ -142,8 +142,8 @@ class ACNetworking: NSObject {
     /**
     首先调用这两个方法
     */
-    class func requestLoadingFinish(requestBlock: ACRequestCompleteCallback!) {
-        objc_setAssociatedObject(self, kACASIRequestFinishKey, requestBlock, UInt(OBJC_ASSOCIATION_COPY));
+    class func requestLoadingFinish(requestBlock: (() -> Void)!) {
+//        objc_setAssociatedObject(self, kACASIRequestFinishKey, requestBlock, UInt(OBJC_ASSOCIATION_COPY));
     }
     
     class func queueLoadingFinish(queueBlock: ACQueueCompleteCallback!) {
