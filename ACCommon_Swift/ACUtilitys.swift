@@ -10,11 +10,9 @@ import UIKit
 import ImageIO
 import CoreTelephony
 
-
 /*
 常用工具类
 */
-
 
 let kPlaceholderName: NSString = "placeholder"
 let kPlaceholderColor: UIColor = fColorRGB(288.0, 288.0, 288.0)
@@ -333,8 +331,9 @@ class ACUtilitys: NSObject {
     重置图片的大小，图片不变形，只压缩
     @number 高度或者宽度
     @flag 传入的number值是高度或者宽度 YES:高度，NO:宽度
+    不向外部公开，私有化
     */
-    class func resizedImageWithImage(image: UIImage!, isHeight: Bool, number: CGFloat) -> UIImage {
+    private class func resizedImageWithImage(image: UIImage!, isHeight: Bool, number: CGFloat) -> UIImage {
         var size: CGSize
         if isHeight {
             size = CGSizeMake(ACUtilitys.reckonWithSize(image.size, height: number), number)
@@ -408,7 +407,8 @@ class ACUtilitys: NSObject {
         return CGSizeMake(newWidth, newHeight)
     }
     
-    class func reckonWithSize(size: CGSize, isHeight: Bool, number: CGFloat) -> CGFloat {
+    //私有
+    private class func reckonWithSize(size: CGSize, isHeight: Bool, number: CGFloat) -> CGFloat {
         var scale: CGFloat = isHeight ? (size.width / size.height) : (size.height / size.width)
         return scale * number
     }

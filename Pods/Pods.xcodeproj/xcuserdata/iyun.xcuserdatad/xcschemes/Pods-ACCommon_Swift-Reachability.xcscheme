@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9DE5E8CF88344ABC87F0DA38"
+               BlueprintIdentifier = "60939D4E09FB4060AA71CC9B"
                BuildableName = "libPods-ACCommon_Swift-Reachability.a"
                BlueprintName = "Pods-ACCommon_Swift-Reachability"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9DE5E8CF88344ABC87F0DA38"
-            BuildableName = "libPods-ACCommon_Swift-Reachability.a"
-            BlueprintName = "Pods-ACCommon_Swift-Reachability"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

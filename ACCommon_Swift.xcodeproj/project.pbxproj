@@ -15,7 +15,6 @@
 		DD022AF01987AA1100CA6CE9 /* NSDate+ACAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AEF1987AA1100CA6CE9 /* NSDate+ACAdditions.swift */; };
 		DD2832EE1985FFF000B77A58 /* ACUtilitys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */; };
 		DD2984B019820BC10007C45C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2984AF19820BC10007C45C /* AppDelegate.swift */; };
-		DD2984C319820BC30007C45C /* ACCommon_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2984C219820BC30007C45C /* ACCommon_SwiftTests.swift */; };
 		DD29858A19821F340007C45C /* NSData+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D019821F340007C45C /* NSData+ACAdditions.m */; };
 		DD29858B19821F340007C45C /* NSDate+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D219821F340007C45C /* NSDate+ACAdditions.m */; };
 		DD29858C19821F340007C45C /* NSDictionary+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D419821F340007C45C /* NSDictionary+ACAdditions.m */; };
@@ -63,6 +62,13 @@
 			remoteGlobalIDString = DD2984A919820BC10007C45C;
 			remoteInfo = ACCommon_Swift;
 		};
+		DD8CE15A1988F418000D5E32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD2984A219820BC10007C45C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD2984A919820BC10007C45C;
+			remoteInfo = ACCommon_Swift;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -78,8 +84,6 @@
 		DD2984AE19820BC10007C45C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD2984AF19820BC10007C45C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD2984BC19820BC30007C45C /* ACCommon_SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACCommon_SwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD2984C119820BC30007C45C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD2984C219820BC30007C45C /* ACCommon_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCommon_SwiftTests.swift; sourceTree = "<group>"; };
 		DD2984CC19820BEC0007C45C /* ACCommon-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ACCommon-Prefix.pch"; sourceTree = "<group>"; };
 		DD2984CE19821F340007C45C /* ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAdditions.h; sourceTree = "<group>"; };
 		DD2984CF19821F340007C45C /* NSData+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ACAdditions.h"; sourceTree = "<group>"; };
@@ -193,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				DD2984AC19820BC10007C45C /* ACCommon_Swift */,
-				DD2984BF19820BC30007C45C /* ACCommon_SwiftTests */,
 				DD2984AB19820BC10007C45C /* Products */,
 				C4C27082CDE9465CA871538A /* Pods-ACCommon_Swift.xcconfig */,
 				6025D704B296414689714139 /* Frameworks */,
@@ -236,23 +239,6 @@
 			children = (
 				DD2984AE19820BC10007C45C /* Info.plist */,
 				DD2984CC19820BEC0007C45C /* ACCommon-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DD2984BF19820BC30007C45C /* ACCommon_SwiftTests */ = {
-			isa = PBXGroup;
-			children = (
-				DD2984C219820BC30007C45C /* ACCommon_SwiftTests.swift */,
-				DD2984C019820BC30007C45C /* Supporting Files */,
-			);
-			path = ACCommon_SwiftTests;
-			sourceTree = "<group>";
-		};
-		DD2984C019820BC30007C45C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DD2984C119820BC30007C45C /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -491,6 +477,7 @@
 			);
 			dependencies = (
 				DD2984BE19820BC30007C45C /* PBXTargetDependency */,
+				DD8CE15B1988F418000D5E32 /* PBXTargetDependency */,
 			);
 			name = ACCommon_SwiftTests;
 			productName = ACCommon_SwiftTests;
@@ -648,7 +635,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD2984C319820BC30007C45C /* ACCommon_SwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +645,11 @@
 			isa = PBXTargetDependency;
 			target = DD2984A919820BC10007C45C /* ACCommon_Swift */;
 			targetProxy = DD2984BD19820BC30007C45C /* PBXContainerItemProxy */;
+		};
+		DD8CE15B1988F418000D5E32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD2984A919820BC10007C45C /* ACCommon_Swift */;
+			targetProxy = DD8CE15A1988F418000D5E32 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

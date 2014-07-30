@@ -11,7 +11,6 @@ import Foundation
 extension NSDate {
 //    #pragma mark - 时间分段取出
     
-    
     func dateComponents() -> NSDateComponents {
         let cal: NSCalendar = NSCalendar.currentCalendar()
         let unitFlags = NSCalendarUnit.EraCalendarUnit |
@@ -37,11 +36,12 @@ extension NSDate {
     }
     
     func era() -> NSString {
-        return NSString(self.dateComponents().era)
+        
+        return NSNumber(self.dateComponents().era)
     }
     
     func year() -> NSString {
-        
+        self.dateComponents().year
     }
     
     func month() -> NSString {

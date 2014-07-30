@@ -34,6 +34,7 @@ class ACTextField: UITextField {
             super.drawPlaceholderInRect(rect)
             return
         }
+        
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
         paragraphStyle.alignment = self.textAlignment
