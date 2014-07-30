@@ -10,8 +10,6 @@
 
 @implementation ACAnimation
 
-
-#if defined(__USE_QuartzCore__) && __USE_QuartzCore__
 /**********************************************常用动画************************************************/
 /**
  *  首先推荐一个不错的网站.   http://www.raywenderlich.com
@@ -714,6 +712,5 @@
     
     [view.layer addAnimation:animation forKey:nil];
 }
-#endif
 
 @end

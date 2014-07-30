@@ -9,6 +9,17 @@
 #import "NSObject+ACAdditions.h"
 #import <objc/runtime.h>
 
+
+//基础类型的类型编码字符
+#define _C_ENCODE @"cCsSiIlLqQfdbB"
+#define __C_BASE_TYPE__(_value) ( [_C_ENCODE rangeOfString:[NSString stringWithCString:@encode(__typeof__(_value)) encoding:NSUTF8StringEncoding] options:NSRegularExpressionSearch].location != NSNotFound )
+
+//C基础类型转NSNumber
+#define CBT_CONVERT_OC(_cvalue) ({ __typeof__(_cvalue) __NSX_PASTE__(_a,L) = (_cvalue); __C_BASE_TYPE__(__NSX_PASTE__(_a,L)) ? @(__NSX_PASTE__(_a,L)) : [NSValue value:&__NSX_PASTE__(_a,L) withObjCType:@encode(__typeof__(__NSX_PASTE__(_a,L)))]; })
+
+//C类型转NSValue
+#define C_CONVERT_OC(_cobj) ({__typeof__(_cobj) __NSX_PASTE__(_a,L) = (_cobj); [NSValue value:&__NSX_PASTE__(_a,L) withObjCType:@encode(__typeof__(__NSX_PASTE__(_a,L)))]; })
+
 @implementation NSObject (ACAdditions)
 
 - (NSDictionary *)propertyDictionary{

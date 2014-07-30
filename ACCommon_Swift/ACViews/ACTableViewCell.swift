@@ -86,7 +86,7 @@ class ACTableViewCell: UITableViewCell {
         self.initialize()
     }
     
-    func initialize() {
+    private func initialize() {
         showingSeparator = YES
         separatorColor = UIColor.grayColor().colorWithAlphaComponent(0.7)
         separatorSpace = ACSeparatorSpacesMake(15.0, 0.0)

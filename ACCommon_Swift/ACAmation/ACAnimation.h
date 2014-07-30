@@ -6,11 +6,12 @@
 //  Copyright (c) 2014年 Alone Coding. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import <QuartzCore/QuartzCore.h>
 
 @interface ACAnimation : NSObject
 
-#if defined(__USE_QuartzCore__) && __USE_QuartzCore__
 /**********************************************常用动画************************************************/
 #pragma mark - Custom Animation
 
@@ -117,6 +118,5 @@
 
 + (void)animationCameraOpen:(UIView *)view;
 + (void)animationCameraClose:(UIView *)view;
-#endif
 
 @end

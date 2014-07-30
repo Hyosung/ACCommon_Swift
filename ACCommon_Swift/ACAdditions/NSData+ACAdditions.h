@@ -33,4 +33,7 @@
  Base64解密
  */
 - (NSString*)decodeBase64;
+
+//JSON解析
+- (id)JSON;
 @end

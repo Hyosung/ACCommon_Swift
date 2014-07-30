@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D8637B941C1146C1BBDE5E06"
+               BlueprintIdentifier = "1C4F320C4D9043D3B9FC6FC6"
                BuildableName = "libPods-ACCommon_Swift-SVWebViewController.a"
                BlueprintName = "Pods-ACCommon_Swift-SVWebViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8637B941C1146C1BBDE5E06"
+            BlueprintIdentifier = "1C4F320C4D9043D3B9FC6FC6"
             BuildableName = "libPods-ACCommon_Swift-SVWebViewController.a"
             BlueprintName = "Pods-ACCommon_Swift-SVWebViewController"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D8637B941C1146C1BBDE5E06"
+            BlueprintIdentifier = "1C4F320C4D9043D3B9FC6FC6"
             BuildableName = "libPods-ACCommon_Swift-SVWebViewController.a"
             BlueprintName = "Pods-ACCommon_Swift-SVWebViewController"
             ReferencedContainer = "container:Pods.xcodeproj">

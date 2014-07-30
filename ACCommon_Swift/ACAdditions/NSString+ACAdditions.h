@@ -87,4 +87,7 @@
 #pragma mark - NSString To UIImage
 - (UIImage *)stringConvertedImage;
 
+#pragma mark - JSON
+- (id)JSON;
+
 @end

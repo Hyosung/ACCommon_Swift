@@ -1,5 +1,5 @@
 //
-//  NSDate+ACAdditions.swift
+//  NSDateExtensions.swift
 //  ACCommon_Swift
 //
 //  Created by i云 on 14-7-29.
@@ -36,55 +36,63 @@ extension NSDate {
     }
     
     func era() -> NSString {
-        
-        return NSNumber(self.dateComponents().era)
+       
+        return NSString(format: "%d",self.dateComponents().era)
     }
     
     func year() -> NSString {
-        self.dateComponents().year
+        return NSString(format: "%d",self.dateComponents().year)
     }
     
     func month() -> NSString {
-        
+        return NSString(format: "%d",self.dateComponents().month)
     }
     
     func month_MM() -> NSString {
-        
+        return NSString(format: "%02d",self.dateComponents().month)
     }
     
     func day() -> NSString {
         
+        return NSString(format: "%d",self.dateComponents().day)
     }
     
     func day_dd() -> NSString {
         
+        return NSString(format: "%02d",self.dateComponents().day)
     }
     
     func hour() -> NSString {
         
+        return NSString(format: "%d",self.dateComponents().hour)
     }
     
     func hour_hh() -> NSString {
         
+        return NSString(format: "%02d",self.dateComponents().hour)
     }
     
     func minute() -> NSString {
         
+        return NSString(format: "%d",self.dateComponents().minute)
     }
     
     func minute_mm() -> NSString {
         
+        return NSString(format: "%02d",self.dateComponents().minute)
     }
     
     func second() -> NSString {
         
+        return NSString(format: "%d",self.dateComponents().second)
     }
     
     func second_ss() -> NSString {
         
+        return NSString(format: "%02d",self.dateComponents().second)
     }
     
     func week() -> NSString {
-        
+        return NSString(format: "周%@", self.weeks()[NSNumber(self.dateComponents().weekday)])
     }
 }

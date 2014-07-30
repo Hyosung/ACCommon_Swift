@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6E4B6B7CFB4E44FAB5AD9899"
+               BlueprintIdentifier = "4978B1A5D2ED49FA99567D38"
                BuildableName = "libPods-ACCommon_Swift-SoundManager.a"
                BlueprintName = "Pods-ACCommon_Swift-SoundManager"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6E4B6B7CFB4E44FAB5AD9899"
+            BlueprintIdentifier = "4978B1A5D2ED49FA99567D38"
             BuildableName = "libPods-ACCommon_Swift-SoundManager.a"
             BlueprintName = "Pods-ACCommon_Swift-SoundManager"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6E4B6B7CFB4E44FAB5AD9899"
+            BlueprintIdentifier = "4978B1A5D2ED49FA99567D38"
             BuildableName = "libPods-ACCommon_Swift-SoundManager.a"
             BlueprintName = "Pods-ACCommon_Swift-SoundManager"
             ReferencedContainer = "container:Pods.xcodeproj">

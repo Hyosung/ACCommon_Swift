@@ -1,9 +1,9 @@
 //
-//  ACCommon-Prefix.pch
+//  ACCommon-Bridging-Header.h
 //  ACCommon_Swift
 //
-//  Created by i云 on 14-7-25.
+//  Created by 曉星 on 14-7-30.
 //  Copyright (c) 2014年 Alone Coding. All rights reserved.
 //
-#import <UIKit/UIKit.h>
+
 #import "ACCommon.h"

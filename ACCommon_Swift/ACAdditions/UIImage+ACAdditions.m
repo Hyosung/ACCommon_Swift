@@ -12,6 +12,15 @@
 #import <float.h>
 #import "GTMBase64.h"
 
+#pragma mark - degrees/radian functions
+/*
+ 旋转的单位采用弧度(radians),而不是角度（degress）。以下两个函数，你可以在弧度和角度之间切换。
+ */
+#define DegreesToRadians(degrees) ((degrees) * M_PI / 180.0)
+#define RadiansToDegrees(radians) ((radians) * 180.0 / M_PI)
+#define SCREEN_WIDTH  CGRectGetWidth([UIScreen mainScreen].bounds)
+#define SCREEN_HEIGHT CGRectGetHeight([UIScreen mainScreen].bounds)
+
 @implementation UIImage (ACAdditions)
 
 #pragma mark - Image Resize

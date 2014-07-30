@@ -45,9 +45,9 @@ class ACTextView: UITextView {
     }
 
     
-    var shouldDrawPlaceholder: Bool = NO
+    private var shouldDrawPlaceholder: Bool = NO
     //私有
-    func initialize() {
+    private func initialize() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textChanged:", name: UITextViewTextDidChangeNotification, object: self)
         self.addObserver(self, forKeyPath: "text", options: NSKeyValueObservingOptions.New, context: nil)
         self.placeholderTextColor = UIColor(white: 0.702, alpha: 1.0)
@@ -63,7 +63,7 @@ class ACTextView: UITextView {
         }
     }
     
-    func updateShouldDrawPlaceholder() {
+    private func updateShouldDrawPlaceholder() {
         var prev = shouldDrawPlaceholder
         shouldDrawPlaceholder = self.placeholder && self.placeholderTextColor && countElements(self.text!) <= 0
         
@@ -72,7 +72,7 @@ class ACTextView: UITextView {
         }
     }
     
-    func textChanged(notification: NSNotification) {
+    private func textChanged(notification: NSNotification) {
         self.updateShouldDrawPlaceholder()
     }
 

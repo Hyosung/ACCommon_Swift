@@ -8,6 +8,8 @@
 
 #import "UIAlertView+ACAdditions.h"
 
+#import <objc/runtime.h>
+
 static char * const kACCanelKey                        = "kACCanelKey";
 static char * const kACDidPresentKey                   = "kACDidPresentKey";
 static char * const kACDidDismissKey                   = "kACDidDismissKey";

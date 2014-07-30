@@ -162,14 +162,14 @@ class ACLargerImageView: UIView, UIActionSheetDelegate,UIScrollViewDelegate {
         }
     }
     
-    func revertPreviousView() {
+    private func revertPreviousView() {
         var scrollView = self.contentView.viewWithTag(50000 + self.currentSelectIndex) as UIScrollView
         if scrollView != nil {
             scrollView.zoomScale = 1.0
         }
     }
     
-    func selectContentItem() {
+    private func selectContentItem() {
         self.contentView.setContentOffset(CGPointMake(self.width * CGFloat(self.currentSelectIndex), 0.0), animated: YES)
     }
     
@@ -200,7 +200,7 @@ class ACLargerImageView: UIView, UIActionSheetDelegate,UIScrollViewDelegate {
             })
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
+    internal func scrollViewDidEndDecelerating(scrollView: UIScrollView!) {
         if scrollView == self.contentView {
             var tempIndex: NSInteger = NSInteger(scrollView.contentOffset.x / self.width)
             
@@ -211,11 +211,11 @@ class ACLargerImageView: UIView, UIActionSheetDelegate,UIScrollViewDelegate {
         }
     }
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
+    internal func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
         return scrollView.viewWithTag(40000)
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView!) {
+    internal func scrollViewDidZoom(scrollView: UIScrollView!) {
         var currentView = scrollView.viewWithTag(40000)
         var offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width) ? (scrollView.bounds.size.width - scrollView.contentSize.width) / 2 : 0.0
         var offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height) ? (scrollView.bounds.size.height - scrollView.contentSize.height) / 2 : 0.0

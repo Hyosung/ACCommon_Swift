@@ -8,6 +8,8 @@
 
 #import "UIImageView+ACAdditions.h"
 
+#import <objc/runtime.h>
+
 static char * kACTapGestureBlockKey = "kACTapGestureBlockKey";
 static char * kACLongPressGestureBlockKey = "kACLongPressGestureBlockKey";
 
@@ -72,15 +74,17 @@ static char * kACLongPressGestureBlockKey = "kACLongPressGestureBlockKey";
 - (void)setACImageURLString:(NSString *)anURLString {
     NSURL *URL = [NSURL URLWithString:anURLString];
     UIImage *placeholderImage = [ACUtilitys drawPlaceholderWithSize:self.size];
-    __weak typeof(self) weakSelf = self;
+    
+    __weak __typeof(&*self) weakSelf = self;
     [self setImageWithURL:URL
          placeholderImage:placeholderImage
                 completed:^(UIImage *image,NSError *error,SDImageCacheType cacheType)
     {
         if (image && !error) {
             
-            UIImage *newImage = [ACUtilitys zoomImageWithSize:weakSelf.size image:image];
-            weakSelf.image = newImage;
+            __strong __typeof(&*weakSelf) strongSelf = weakSelf;
+            UIImage *newImage = [ACUtilitys zoomImageWithSize:strongSelf.size image:image];
+            strongSelf.image = newImage;
         }
     }];
 }

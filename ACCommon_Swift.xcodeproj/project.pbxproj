@@ -12,11 +12,10 @@
 		DD022AEA198774CF00CA6CE9 /* ACLargerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AE9198774CF00CA6CE9 /* ACLargerImageView.swift */; };
 		DD022AEC19878A7A00CA6CE9 /* ACTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AEB19878A7A00CA6CE9 /* ACTableViewCell.swift */; };
 		DD022AEE19879E1500CA6CE9 /* ACTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AED19879E1500CA6CE9 /* ACTextView.swift */; };
-		DD022AF01987AA1100CA6CE9 /* NSDate+ACAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AEF1987AA1100CA6CE9 /* NSDate+ACAdditions.swift */; };
+		DD022AF01987AA1100CA6CE9 /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD022AEF1987AA1100CA6CE9 /* NSDateExtensions.swift */; };
 		DD2832EE1985FFF000B77A58 /* ACUtilitys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */; };
 		DD2984B019820BC10007C45C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2984AF19820BC10007C45C /* AppDelegate.swift */; };
 		DD29858A19821F340007C45C /* NSData+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D019821F340007C45C /* NSData+ACAdditions.m */; };
-		DD29858B19821F340007C45C /* NSDate+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D219821F340007C45C /* NSDate+ACAdditions.m */; };
 		DD29858C19821F340007C45C /* NSDictionary+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D419821F340007C45C /* NSDictionary+ACAdditions.m */; };
 		DD29858D19821F340007C45C /* NSObject+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D619821F340007C45C /* NSObject+ACAdditions.m */; };
 		DD29858E19821F340007C45C /* NSString+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D819821F340007C45C /* NSString+ACAdditions.m */; };
@@ -54,42 +53,22 @@
 		DD33BAE41982634200CBC849 /* ACMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD33BAE31982634200CBC849 /* ACMacros.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		DD2984BD19820BC30007C45C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DD2984A219820BC10007C45C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DD2984A919820BC10007C45C;
-			remoteInfo = ACCommon_Swift;
-		};
-		DD8CE15A1988F418000D5E32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DD2984A219820BC10007C45C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DD2984A919820BC10007C45C;
-			remoteInfo = ACCommon_Swift;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		0411EA491989205A00D514CB /* ACCommon-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ACCommon-Bridging-Header.h"; sourceTree = "<group>"; };
 		C4C27082CDE9465CA871538A /* Pods-ACCommon_Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACCommon_Swift.xcconfig"; path = "Pods/Pods-ACCommon_Swift.xcconfig"; sourceTree = "<group>"; };
 		D3DFC8874E694EA6ADB69B11 /* libPods-ACCommon_Swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ACCommon_Swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD022AE71987502000CA6CE9 /* ACTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTextField.swift; sourceTree = "<group>"; };
 		DD022AE9198774CF00CA6CE9 /* ACLargerImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACLargerImageView.swift; sourceTree = "<group>"; };
 		DD022AEB19878A7A00CA6CE9 /* ACTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTableViewCell.swift; sourceTree = "<group>"; };
 		DD022AED19879E1500CA6CE9 /* ACTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTextView.swift; sourceTree = "<group>"; };
-		DD022AEF1987AA1100CA6CE9 /* NSDate+ACAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+ACAdditions.swift"; sourceTree = "<group>"; };
+		DD022AEF1987AA1100CA6CE9 /* NSDateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensions.swift; sourceTree = "<group>"; };
 		DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACUtilitys.swift; sourceTree = "<group>"; };
 		DD2984AA19820BC10007C45C /* ACCommon_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACCommon_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2984AE19820BC10007C45C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD2984AF19820BC10007C45C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD2984BC19820BC30007C45C /* ACCommon_SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACCommon_SwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD2984CC19820BEC0007C45C /* ACCommon-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ACCommon-Prefix.pch"; sourceTree = "<group>"; };
 		DD2984CE19821F340007C45C /* ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAdditions.h; sourceTree = "<group>"; };
 		DD2984CF19821F340007C45C /* NSData+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ACAdditions.h"; sourceTree = "<group>"; };
 		DD2984D019821F340007C45C /* NSData+ACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ACAdditions.m"; sourceTree = "<group>"; };
-		DD2984D119821F340007C45C /* NSDate+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ACAdditions.h"; sourceTree = "<group>"; };
-		DD2984D219821F340007C45C /* NSDate+ACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ACAdditions.m"; sourceTree = "<group>"; };
 		DD2984D319821F340007C45C /* NSDictionary+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ACAdditions.h"; sourceTree = "<group>"; };
 		DD2984D419821F340007C45C /* NSDictionary+ACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ACAdditions.m"; sourceTree = "<group>"; };
 		DD2984D519821F340007C45C /* NSObject+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ACAdditions.h"; sourceTree = "<group>"; };
@@ -117,7 +96,6 @@
 		DD2984ED19821F340007C45C /* ACBaseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACBaseTableController.h; sourceTree = "<group>"; };
 		DD2984EE19821F340007C45C /* ACBaseTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBaseTableController.m; sourceTree = "<group>"; };
 		DD2984EF19821F340007C45C /* ACCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCommon.h; sourceTree = "<group>"; };
-		DD2984F019821F340007C45C /* ACCommonSF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCommonSF.h; sourceTree = "<group>"; };
 		DD2984F619821F340007C45C /* ACExternals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACExternals.h; sourceTree = "<group>"; };
 		DD29852119821F340007C45C /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
 		DD29852219821F340007C45C /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
@@ -158,7 +136,6 @@
 		DD29854F19821F340007C45C /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
 		DD29857919821F340007C45C /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		DD29857A19821F340007C45C /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
-		DD29857B19821F340007C45C /* ACMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
 		DD29857D19821F340007C45C /* ACNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACNetworking.h; sourceTree = "<group>"; };
 		DD29857E19821F340007C45C /* ACNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNetworking.m; sourceTree = "<group>"; };
 		DD29857F19821F340007C45C /* ACPrefixs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPrefixs.h; sourceTree = "<group>"; };
@@ -172,13 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				071D7C435A724F63801FAC64 /* libPods-ACCommon_Swift.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD2984B919820BC30007C45C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				DD2984AA19820BC10007C45C /* ACCommon_Swift.app */,
-				DD2984BC19820BC30007C45C /* ACCommon_SwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,18 +187,16 @@
 				DD2984CD19821F340007C45C /* ACAdditions */,
 				DD2984E519821F340007C45C /* ACAmation */,
 				DD2984E819821F340007C45C /* ACBaseController */,
-				DD2984EF19821F340007C45C /* ACCommon.h */,
-				DD2984F019821F340007C45C /* ACCommonSF.h */,
 				DD2984F119821F340007C45C /* ACControls */,
 				DD2984F519821F340007C45C /* ACExternals */,
-				DD29857B19821F340007C45C /* ACMacros.h */,
 				DD29857C19821F340007C45C /* ACNetworking */,
-				DD29857F19821F340007C45C /* ACPrefixs.h */,
 				DD29858219821F340007C45C /* ACViews */,
 				DD2984AF19820BC10007C45C /* AppDelegate.swift */,
-				DD2984AD19820BC10007C45C /* Supporting Files */,
+				DD29857F19821F340007C45C /* ACPrefixs.h */,
+				DD2984EF19821F340007C45C /* ACCommon.h */,
 				DD33BAE31982634200CBC849 /* ACMacros.swift */,
 				DD2832ED1985FFF000B77A58 /* ACUtilitys.swift */,
+				DD2984AD19820BC10007C45C /* Supporting Files */,
 			);
 			path = ACCommon_Swift;
 			sourceTree = "<group>";
@@ -238,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				DD2984AE19820BC10007C45C /* Info.plist */,
-				DD2984CC19820BEC0007C45C /* ACCommon-Prefix.pch */,
+				0411EA491989205A00D514CB /* ACCommon-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -249,8 +216,6 @@
 				DD2984CE19821F340007C45C /* ACAdditions.h */,
 				DD2984CF19821F340007C45C /* NSData+ACAdditions.h */,
 				DD2984D019821F340007C45C /* NSData+ACAdditions.m */,
-				DD2984D119821F340007C45C /* NSDate+ACAdditions.h */,
-				DD2984D219821F340007C45C /* NSDate+ACAdditions.m */,
 				DD2984D319821F340007C45C /* NSDictionary+ACAdditions.h */,
 				DD2984D419821F340007C45C /* NSDictionary+ACAdditions.m */,
 				DD2984D519821F340007C45C /* NSObject+ACAdditions.h */,
@@ -269,7 +234,7 @@
 				DD2984E219821F340007C45C /* UIImageView+ACAdditions.m */,
 				DD2984E319821F340007C45C /* UIView+ACAdditions.h */,
 				DD2984E419821F340007C45C /* UIView+ACAdditions.m */,
-				DD022AEF1987AA1100CA6CE9 /* NSDate+ACAdditions.swift */,
+				DD022AEF1987AA1100CA6CE9 /* NSDateExtensions.swift */,
 			);
 			path = ACAdditions;
 			sourceTree = "<group>";
@@ -465,25 +430,6 @@
 			productReference = DD2984AA19820BC10007C45C /* ACCommon_Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DD2984BB19820BC30007C45C /* ACCommon_SwiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DD2984C919820BC30007C45C /* Build configuration list for PBXNativeTarget "ACCommon_SwiftTests" */;
-			buildPhases = (
-				DD2984B819820BC30007C45C /* Sources */,
-				DD2984B919820BC30007C45C /* Frameworks */,
-				DD2984BA19820BC30007C45C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DD2984BE19820BC30007C45C /* PBXTargetDependency */,
-				DD8CE15B1988F418000D5E32 /* PBXTargetDependency */,
-			);
-			name = ACCommon_SwiftTests;
-			productName = ACCommon_SwiftTests;
-			productReference = DD2984BC19820BC30007C45C /* ACCommon_SwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -495,10 +441,6 @@
 				TargetAttributes = {
 					DD2984A919820BC10007C45C = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					DD2984BB19820BC30007C45C = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = DD2984A919820BC10007C45C;
 					};
 				};
 			};
@@ -524,7 +466,6 @@
 			projectRoot = "";
 			targets = (
 				DD2984A919820BC10007C45C /* ACCommon_Swift */,
-				DD2984BB19820BC30007C45C /* ACCommon_SwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -535,13 +476,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD2985AD19821F340007C45C /* PullingRefreshTableView.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD2984BA19820BC30007C45C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,8 +547,7 @@
 				DD29859619821F340007C45C /* ACBaseCollectionController.m in Sources */,
 				DD2985BD19821F340007C45C /* SDWebImagePrefetcher.m in Sources */,
 				DD29859119821F340007C45C /* UIColor+ACAdditions.m in Sources */,
-				DD022AF01987AA1100CA6CE9 /* NSDate+ACAdditions.swift in Sources */,
-				DD29858B19821F340007C45C /* NSDate+ACAdditions.m in Sources */,
+				DD022AF01987AA1100CA6CE9 /* NSDateExtensions.swift in Sources */,
 				DD022AEC19878A7A00CA6CE9 /* ACTableViewCell.swift in Sources */,
 				DD29858D19821F340007C45C /* NSObject+ACAdditions.m in Sources */,
 				DD29859819821F340007C45C /* ACBaseTableController.m in Sources */,
@@ -631,27 +564,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD2984B819820BC30007C45C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DD2984BE19820BC30007C45C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DD2984A919820BC10007C45C /* ACCommon_Swift */;
-			targetProxy = DD2984BD19820BC30007C45C /* PBXContainerItemProxy */;
-		};
-		DD8CE15B1988F418000D5E32 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DD2984A919820BC10007C45C /* ACCommon_Swift */;
-			targetProxy = DD8CE15A1988F418000D5E32 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DD2984C419820BC30007C45C /* Debug */ = {
@@ -692,7 +605,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "ACCommon_Swift/ACCommon-Prefix.pch";
+				SWIFT_OBJC_BRIDGING_HEADER = "ACCommon_Swift/ACCommon-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -728,7 +641,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "ACCommon_Swift/ACCommon-Prefix.pch";
+				SWIFT_OBJC_BRIDGING_HEADER = "ACCommon_Swift/ACCommon-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -742,7 +655,7 @@
 				INFOPLIST_FILE = ACCommon_Swift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ACCommon_Swift/ACCommon-Prefix.pch";
+				SWIFT_OBJC_BRIDGING_HEADER = "ACCommon_Swift/ACCommon-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -755,41 +668,7 @@
 				INFOPLIST_FILE = ACCommon_Swift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ACCommon_Swift/ACCommon-Prefix.pch";
-			};
-			name = Release;
-		};
-		DD2984CA19820BC30007C45C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ACCommon_Swift.app/ACCommon_Swift";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ACCommon_SwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		DD2984CB19820BC30007C45C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ACCommon_Swift.app/ACCommon_Swift";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ACCommon_SwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ACCommon_Swift/ACCommon-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -810,15 +689,6 @@
 			buildConfigurations = (
 				DD2984C719820BC30007C45C /* Debug */,
 				DD2984C819820BC30007C45C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DD2984C919820BC30007C45C /* Build configuration list for PBXNativeTarget "ACCommon_SwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DD2984CA19820BC30007C45C /* Debug */,
-				DD2984CB19820BC30007C45C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

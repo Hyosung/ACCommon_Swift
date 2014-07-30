@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A78745B5AACA430D8262D2EA"
+               BlueprintIdentifier = "FBD80756B4D24C438127B5F9"
                BuildableName = "libPods-ACCommon_Swift-SVProgressHUD.a"
                BlueprintName = "Pods-ACCommon_Swift-SVProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A78745B5AACA430D8262D2EA"
+            BlueprintIdentifier = "FBD80756B4D24C438127B5F9"
             BuildableName = "libPods-ACCommon_Swift-SVProgressHUD.a"
             BlueprintName = "Pods-ACCommon_Swift-SVProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A78745B5AACA430D8262D2EA"
+            BlueprintIdentifier = "FBD80756B4D24C438127B5F9"
             BuildableName = "libPods-ACCommon_Swift-SVProgressHUD.a"
             BlueprintName = "Pods-ACCommon_Swift-SVProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52319A79A8274518A9105B03"
+               BlueprintIdentifier = "BACA4DA310C841DFBFA62EAA"
                BuildableName = "libPods-ACCommon_Swift-ASIHTTPRequest.a"
                BlueprintName = "Pods-ACCommon_Swift-ASIHTTPRequest"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52319A79A8274518A9105B03"
+            BlueprintIdentifier = "BACA4DA310C841DFBFA62EAA"
             BuildableName = "libPods-ACCommon_Swift-ASIHTTPRequest.a"
             BlueprintName = "Pods-ACCommon_Swift-ASIHTTPRequest"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52319A79A8274518A9105B03"
+            BlueprintIdentifier = "BACA4DA310C841DFBFA62EAA"
             BuildableName = "libPods-ACCommon_Swift-ASIHTTPRequest.a"
             BlueprintName = "Pods-ACCommon_Swift-ASIHTTPRequest"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -85,4 +85,14 @@
     return base64String;
 }
 
+#pragma mark - JSON
+- (id)JSON {
+    if (![NSJSONSerialization isValidJSONObject:self]) return nil;
+
+    NSError __autoreleasing *e = nil;
+    id json = [NSJSONSerialization JSONObjectWithData:self options:NSJSONReadingAllowFragments error:&e];
+    
+    return json;
+}
+
 @end

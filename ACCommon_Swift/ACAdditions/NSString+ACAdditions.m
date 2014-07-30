@@ -9,7 +9,14 @@
 #import "NSString+ACAdditions.h"
 
 #import <CommonCrypto/CommonDigest.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "GTMBase64.h"
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+#define IOS7_AND_LATER ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
+#else
+#define IOS7_AND_LATER (0)
+#endif
 
 @interface NSString (Private)
 
@@ -256,6 +263,14 @@
 - (UIImage *)stringConvertedImage {
     NSData *data = [GTMBase64 decodeString:self];
     return [UIImage imageWithData:data];
+}
+
+#pragma mark - JSON
+- (id)JSON {
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    if (!data) return nil;
+    
+    return [data JSON];
 }
 
 @end
