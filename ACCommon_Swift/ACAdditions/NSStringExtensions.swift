@@ -223,10 +223,10 @@ extension NSString {
         // Borrowed from http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database
         var UTI: CFStringRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (file.pathExtension as CFString), nil).takeRetainedValue()
         var MIMEType: CFStringRef = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType).takeRetainedValue()
-        if MIMEType.__conversion() == nil {
+        if (MIMEType as NSString) == nil {
             return "application/octet-stream"
         }
-        return MIMEType.__conversion()
+        return MIMEType as NSString
     }
     
     //#pragma mark - NSString To UIImage

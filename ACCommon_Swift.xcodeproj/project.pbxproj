@@ -18,7 +18,6 @@
 		DD29858A19821F340007C45C /* NSData+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D019821F340007C45C /* NSData+ACAdditions.m */; };
 		DD29858C19821F340007C45C /* NSDictionary+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D419821F340007C45C /* NSDictionary+ACAdditions.m */; };
 		DD29858D19821F340007C45C /* NSObject+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D619821F340007C45C /* NSObject+ACAdditions.m */; };
-		DD29858E19821F340007C45C /* NSString+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984D819821F340007C45C /* NSString+ACAdditions.m */; };
 		DD29858F19821F340007C45C /* UIAlertView+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984DA19821F340007C45C /* UIAlertView+ACAdditions.m */; };
 		DD29859019821F340007C45C /* UIButton+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984DC19821F340007C45C /* UIButton+ACAdditions.m */; };
 		DD29859119821F340007C45C /* UIColor+ACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD2984DE19821F340007C45C /* UIColor+ACAdditions.m */; };
@@ -74,8 +73,6 @@
 		DD2984D419821F340007C45C /* NSDictionary+ACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ACAdditions.m"; sourceTree = "<group>"; };
 		DD2984D519821F340007C45C /* NSObject+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ACAdditions.h"; sourceTree = "<group>"; };
 		DD2984D619821F340007C45C /* NSObject+ACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ACAdditions.m"; sourceTree = "<group>"; };
-		DD2984D719821F340007C45C /* NSString+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ACAdditions.h"; sourceTree = "<group>"; };
-		DD2984D819821F340007C45C /* NSString+ACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ACAdditions.m"; sourceTree = "<group>"; };
 		DD2984D919821F340007C45C /* UIAlertView+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+ACAdditions.h"; sourceTree = "<group>"; };
 		DD2984DA19821F340007C45C /* UIAlertView+ACAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+ACAdditions.m"; sourceTree = "<group>"; };
 		DD2984DB19821F340007C45C /* UIButton+ACAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ACAdditions.h"; sourceTree = "<group>"; };
@@ -222,8 +219,6 @@
 				DD2984D419821F340007C45C /* NSDictionary+ACAdditions.m */,
 				DD2984D519821F340007C45C /* NSObject+ACAdditions.h */,
 				DD2984D619821F340007C45C /* NSObject+ACAdditions.m */,
-				DD2984D719821F340007C45C /* NSString+ACAdditions.h */,
-				DD2984D819821F340007C45C /* NSString+ACAdditions.m */,
 				DD2984D919821F340007C45C /* UIAlertView+ACAdditions.h */,
 				DD2984DA19821F340007C45C /* UIAlertView+ACAdditions.m */,
 				DD2984DB19821F340007C45C /* UIButton+ACAdditions.h */,
@@ -556,7 +551,6 @@
 				DD29858D19821F340007C45C /* NSObject+ACAdditions.m in Sources */,
 				DD29859819821F340007C45C /* ACBaseTableController.m in Sources */,
 				DD2985B519821F340007C45C /* UIImage+MultiFormat.m in Sources */,
-				DD29858E19821F340007C45C /* NSString+ACAdditions.m in Sources */,
 				DD2985B819821F340007C45C /* SDWebImageDownloader.m in Sources */,
 				DD2832EE1985FFF000B77A58 /* ACUtilitys.swift in Sources */,
 				DD29859219821F340007C45C /* UIImage+ACAdditions.m in Sources */,

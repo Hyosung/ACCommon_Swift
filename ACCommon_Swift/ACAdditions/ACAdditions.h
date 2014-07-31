@@ -17,7 +17,7 @@
 
 #import "NSData+ACAdditions.h"
 
-#import "NSString+ACAdditions.h"
+//#import "NSString+ACAdditions.h"
 
 #import "NSDictionary+ACAdditions.h"
 
