@@ -51,6 +51,7 @@
 		DD2985D019821F340007C45C /* ACNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = DD29857E19821F340007C45C /* ACNetworking.m */; };
 		DD2985D8198223BB0007C45C /* ACNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2985D7198223BB0007C45C /* ACNetworking.swift */; };
 		DD33BAE41982634200CBC849 /* ACMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD33BAE31982634200CBC849 /* ACMacros.swift */; };
+		DD4FFAF5198A0E6F002DB8EA /* NSStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4FFAF4198A0E6F002DB8EA /* NSStringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +142,7 @@
 		DD29857F19821F340007C45C /* ACPrefixs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPrefixs.h; sourceTree = "<group>"; };
 		DD2985D7198223BB0007C45C /* ACNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACNetworking.swift; sourceTree = "<group>"; };
 		DD33BAE31982634200CBC849 /* ACMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACMacros.swift; sourceTree = "<group>"; };
+		DD4FFAF4198A0E6F002DB8EA /* NSStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 				DD2984E319821F340007C45C /* UIView+ACAdditions.h */,
 				DD2984E419821F340007C45C /* UIView+ACAdditions.m */,
 				DD022AEF1987AA1100CA6CE9 /* NSDateExtensions.swift */,
+				DD4FFAF4198A0E6F002DB8EA /* NSStringExtensions.swift */,
 			);
 			path = ACAdditions;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				DD29858A19821F340007C45C /* NSData+ACAdditions.m in Sources */,
 				DD2984B019820BC10007C45C /* AppDelegate.swift in Sources */,
 				DD2985B919821F340007C45C /* SDWebImageDownloaderOperation.m in Sources */,
+				DD4FFAF5198A0E6F002DB8EA /* NSStringExtensions.swift in Sources */,
 				DD2985AE19821F340007C45C /* PullingRefreshTableView.m in Sources */,
 				DD29858C19821F340007C45C /* NSDictionary+ACAdditions.m in Sources */,
 				DD29859419821F340007C45C /* UIView+ACAdditions.m in Sources */,

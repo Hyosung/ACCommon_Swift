@@ -108,6 +108,10 @@ func fAppTmpAddTo(path: NSString) -> NSString {
     return NSTemporaryDirectory().stringByAppendingPathComponent(path)
 }
 
+func ACSTR(format : String, args: CVarArg...) -> String {
+    return NSString(format: format, arguments: getVaList(args))
+}
+
 func UUID() -> NSString{
     var uuid: CFUUIDRef = CFUUIDCreate(kCFAllocatorDefault)
     var uuidStr: CFStringRef = CFUUIDCreateString(kCFAllocatorDefault, uuid)
