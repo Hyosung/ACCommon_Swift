@@ -11,7 +11,7 @@ import Foundation
 extension NSDate {
 //    #pragma mark - 时间分段取出
     
-    func dateComponents() -> NSDateComponents {
+    private func dateComponents() -> NSDateComponents {
         let cal: NSCalendar = NSCalendar.currentCalendar()
         let unitFlags = NSCalendarUnit.EraCalendarUnit |
                         NSCalendarUnit.YearCalendarUnit |
@@ -24,7 +24,7 @@ extension NSDate {
         return cal.components(unitFlags, fromDate: self)
     }
     
-    func weeks() -> NSDictionary {
+    private func weeks() -> NSDictionary {
         let weeks = [NSNumber(2): "一",
             NSNumber(3): "二",
             NSNumber(4): "三",

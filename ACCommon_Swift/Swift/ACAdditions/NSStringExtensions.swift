@@ -24,14 +24,22 @@ extension NSString {
     md5加密
     */
     func md5() -> NSString {
-        var str = self.UTF8String
-        var r: UnsafePointer<UInt8> = UnsafePointer<UInt8>()
-        CC_MD5(str, CC_LONG(strlen(str)), r)
-        var md5Text: NSMutableString = NSMutableString(string: "")
-        for var i: Int32 = 0; i < CC_MD5_DIGEST_LENGTH; i++ {
-            md5Text.appendFormat("%02x", r[Int(i)])
+        
+        let plaintext = self.cStringUsingEncoding(NSUTF8StringEncoding)
+        let plaintextLen = CUnsignedInt(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let result = UnsafePointer<CUnsignedChar>.alloc(digestLen)
+        
+        CC_MD5(plaintext!, plaintextLen, result)
+        
+        var md5Hash = NSMutableString(string: "")
+        for i in 0..<digestLen {
+            md5Hash.appendFormat("%02x", result[i])
         }
-        return md5Text
+        
+        result.destroy()
+        
+        return String(md5Hash)
     }
     
     //#pragma mark - Base64
@@ -214,20 +222,20 @@ extension NSString {
     返回指定路径下文件的MIME
     */
     //引至ASIHTTPRequst #import <MobileCoreServices/MobileCoreServices.h>
-    func fileMIMEType(file: NSString) -> NSString {
-        
-        if !NSFileManager.defaultManager().fileExistsAtPath(file) {
-            return ""
-        }
-        
-        // Borrowed from http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database
-        var UTI: CFStringRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (file.pathExtension as CFString), nil).takeRetainedValue()
-        var MIMEType: CFStringRef = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType).takeRetainedValue()
-        if (MIMEType as NSString) == nil {
-            return "application/octet-stream"
-        }
-        return MIMEType as NSString
-    }
+//    func fileMIMEType(file: NSString) -> NSString {
+//        
+//        if !NSFileManager.defaultManager().fileExistsAtPath(file) {
+//            return ""
+//        }
+//        
+//        // Borrowed from http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database
+//        var UTI: CFStringRef = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (file.pathExtension as CFString), nil).takeRetainedValue()
+//        var MIMEType: CFStringRef = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType).takeRetainedValue()
+//        if (MIMEType as NSString) == nil {
+//            return "application/octet-stream"
+//        }
+//        return MIMEType as NSString
+//    }
     
     //#pragma mark - NSString To UIImage
     func stringConvertedImage() -> UIImage {

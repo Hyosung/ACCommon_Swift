@@ -26,7 +26,7 @@ struct ACSeparatorSpaces {
 
 //@postfix 此关键字用于定义一个后置运算符函数（如：100--，100++）(单目运算符)
 @postfix func --(spaces: ACSeparatorSpaces) -> ACSeparatorSpaces {
-    return ACSeparatorSpaces(left: spaces.left--, right: spaces.right--)
+    return ACSeparatorSpaces(left: spaces.left - 1.0, right: spaces.right - 1.0)
 }
 
 //@assignment 此关键字用于定义一个组合赋值运算符函数（如：100 += 100），而且需将左参数用inout修饰，inout关键字表示此参数应该传入地址进行操作

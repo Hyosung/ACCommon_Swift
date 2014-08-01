@@ -7,3 +7,4 @@
 //
 #import "GTMBase64.h"
 #import "ACCommon.h"
+#import <CommonCrypto/CommonDigest.h>
