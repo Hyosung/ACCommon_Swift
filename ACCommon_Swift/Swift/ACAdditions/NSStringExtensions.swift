@@ -30,7 +30,7 @@ extension NSString {
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
         let result = UnsafePointer<CUnsignedChar>.alloc(digestLen)
         
-        CC_MD5(plaintext!, plaintextLen, result)
+        CC_MD5(plaintext, plaintextLen, result)
         
         var md5Hash = NSMutableString(string: "")
         for i in 0..<digestLen {
@@ -39,7 +39,7 @@ extension NSString {
         
         result.destroy()
         
-        return String(md5Hash)
+        return md5Hash
     }
     
     //#pragma mark - Base64
@@ -104,7 +104,7 @@ extension NSString {
         if !self.isKindOfClass(NSClassFromString("NSString")) {
             return false
         }
-        var tempString: NSString = self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).bridgeToObjectiveC()
+        var tempString: NSString = NSString(string: self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
         if tempString.isEqualToString("") {
             return false
         }

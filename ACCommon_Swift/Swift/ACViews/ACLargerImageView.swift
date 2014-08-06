@@ -95,7 +95,7 @@ class ACLargerImageView: UIView, UIActionSheetDelegate,UIScrollViewDelegate {
     func actionSheet(actionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex <= 0 {
             var imageView: UIImageView = self.contentView.viewWithTag(50000 + self.currentSelectIndex).subviews[0] as UIImageView
-            if imageView.image {
+            if imageView.image != nil {
                 imageView.image.savePhotosAlbum()
             }
             else {
@@ -129,7 +129,7 @@ class ACLargerImageView: UIView, UIActionSheetDelegate,UIScrollViewDelegate {
     }
     
     private func loadURLStrings() {
-        if self.URLStrings && self.URLStrings.count > 0 {
+        if self.URLStrings != nil && self.URLStrings.count > 0 {
             for var i = 0; i < self.URLStrings.count; i++ {
                 var scrollView = UIScrollView(frame: CGRectMake(self.width * CGFloat(i), 0.0, self.width, self.height))
                 scrollView.tag = 50000 + i
@@ -147,7 +147,7 @@ class ACLargerImageView: UIView, UIActionSheetDelegate,UIScrollViewDelegate {
                 
                 contentItemView.setImageWithURL(NSURL(string: self.URLStrings[i] as NSString), completed: {
                     (image: UIImage!, error: NSError!, cacheType: SDImageCacheType) in
-                        if (!error && image) {
+                        if error == nil && image != nil {
                             var newImage = ACUtilitys.resizedFixedImageWithImage(image, size: contentItemView.frame.size)
                             contentItemView.image = newImage
                         }

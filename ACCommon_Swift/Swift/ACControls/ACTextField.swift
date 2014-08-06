@@ -12,7 +12,7 @@ class ACTextField: UITextField {
     var placeholderTextColor: UIColor! {
         willSet(newValue) {
             
-            if !self.text && self.placeholder {
+            if self.text == nil && self.placeholder != nil {
                 
                 if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0 {
                     
@@ -30,7 +30,7 @@ class ACTextField: UITextField {
     }
     
     override func drawPlaceholderInRect(rect: CGRect)  {
-        if !self.placeholderTextColor {
+        if self.placeholderTextColor != nil {
             super.drawPlaceholderInRect(rect)
             return
         }
@@ -38,6 +38,6 @@ class ACTextField: UITextField {
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
         paragraphStyle.alignment = self.textAlignment
-        self.placeholder.bridgeToObjectiveC().drawInRect(rect, withAttributes: [NSForegroundColorAttributeName: self.placeholderTextColor,NSFontAttributeName: self.font,NSParagraphStyleAttributeName: paragraphStyle])
+        NSString(string: self.placeholder).drawInRect(rect, withAttributes: [NSForegroundColorAttributeName: self.placeholderTextColor,NSFontAttributeName: self.font,NSParagraphStyleAttributeName: paragraphStyle])
     }
 }

@@ -65,7 +65,7 @@ class ACTextView: UITextView {
     
     private func updateShouldDrawPlaceholder() {
         var prev = shouldDrawPlaceholder
-        shouldDrawPlaceholder = self.placeholder && self.placeholderTextColor && countElements(self.text!) <= 0
+        shouldDrawPlaceholder = self.placeholder != nil && self.placeholderTextColor != nil && countElements(self.text!) <= 0
         
         if prev != shouldDrawPlaceholder {
             self.setNeedsDisplay()
