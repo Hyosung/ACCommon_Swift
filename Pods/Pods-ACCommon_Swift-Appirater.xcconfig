@@ -1,0 +1,1 @@
+PODS_ACCOMMON_SWIFT_APPIRATER_OTHER_LDFLAGS = -framework CFNetwork -framework SystemConfiguration -weak_framework StoreKit

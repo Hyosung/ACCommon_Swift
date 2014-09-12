@@ -53,6 +53,7 @@ install_resource "SVWebViewController/SVWebViewController/UIActivities/Safari/SV
 install_resource "SVWebViewController/SVWebViewController/UIActivities/Safari/SVWebViewControllerActivitySafari-iPad@2x.png"
 install_resource "SVWebViewController/SVWebViewController/UIActivities/Safari/SVWebViewControllerActivitySafari@2x.png"
 install_resource "SVWebViewController/SVWebViewController/SVWebViewController.bundle"
+install_resource "${BUILT_PRODUCTS_DIR}/Appirater.bundle"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

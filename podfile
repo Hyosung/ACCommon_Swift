@@ -10,10 +10,8 @@ pod 'ASIHTTPRequest'
 pod 'Reachability'
 pod 'SoundManager'
 pod 'SVProgressHUD'
+pod 'Appirater'
+pod 'SDWebImage'
+pod 'UIActivityIndicator-for-SDWebImage'
 
 end
-
-target "ACCommon_SwiftTests" do
-
-end
-
