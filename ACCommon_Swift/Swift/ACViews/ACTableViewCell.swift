@@ -15,22 +15,22 @@ struct ACSeparatorSpaces {
 
 //@infix 此关键字用于定义一个全局的运算符函数（双目运算符）
 //这里只是写一个例子
-@infix func +(spaces1: ACSeparatorSpaces, spaces2: ACSeparatorSpaces) -> ACSeparatorSpaces {
+func +(spaces1: ACSeparatorSpaces, spaces2: ACSeparatorSpaces) -> ACSeparatorSpaces {
     return ACSeparatorSpaces(left: spaces1.left + spaces2.left, right: spaces1.right + spaces2.right)
 }
 
 //@prefix 此关键字用于定义一个前置运算符函数（如：-100,+100）(单目运算符)
-@prefix func -(spaces: ACSeparatorSpaces) -> ACSeparatorSpaces {
+prefix func -(spaces: ACSeparatorSpaces) -> ACSeparatorSpaces {
     return ACSeparatorSpaces(left: -spaces.left, right: -spaces.right)
 }
 
 //@postfix 此关键字用于定义一个后置运算符函数（如：100--，100++）(单目运算符)
-@postfix func --(spaces: ACSeparatorSpaces) -> ACSeparatorSpaces {
+postfix func --(spaces: ACSeparatorSpaces) -> ACSeparatorSpaces {
     return ACSeparatorSpaces(left: spaces.left - 1.0, right: spaces.right - 1.0)
 }
 
 //@assignment 此关键字用于定义一个组合赋值运算符函数（如：100 += 100），而且需将左参数用inout修饰，inout关键字表示此参数应该传入地址进行操作
-@assignment func +=(inout spaces1:ACSeparatorSpaces, spaces2: ACSeparatorSpaces) {
+func +=(inout spaces1:ACSeparatorSpaces, spaces2: ACSeparatorSpaces) {
     spaces1 = spaces1 + spaces2
 }
 
@@ -79,11 +79,15 @@ class ACTableViewCell: UITableViewCell {
             }
         }
     }
-
-    init(style: UITableViewCellStyle, reuseIdentifier: String) {
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // Initialization code
         self.initialize()
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func initialize() {

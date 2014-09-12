@@ -24,13 +24,16 @@ class ACTextView: UITextView {
         self.removeObserver(self, forKeyPath: "text", context: nil)
     }
     
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame, textContainer: nil)
         // Initialization code
         self.initialize()
     }
 
-    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect)
@@ -54,7 +57,7 @@ class ACTextView: UITextView {
         shouldDrawPlaceholder = NO
     }
     
-    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafePointer<()>) {
+    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafeMutablePointer<Void>) {
         if keyPath == "text" {
             self.updateShouldDrawPlaceholder()
         }
@@ -65,7 +68,7 @@ class ACTextView: UITextView {
     
     private func updateShouldDrawPlaceholder() {
         var prev = shouldDrawPlaceholder
-        shouldDrawPlaceholder = self.placeholder && self.placeholderTextColor && countElements(self.text!) <= 0
+        shouldDrawPlaceholder = self.placeholder != nil && self.placeholderTextColor != nil && countElements(self.text!) <= 0
         
         if prev != shouldDrawPlaceholder {
             self.setNeedsDisplay()

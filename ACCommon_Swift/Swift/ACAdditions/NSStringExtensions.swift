@@ -14,7 +14,7 @@ extension NSString {
     /**
     字符串格式化
     */
-    func format(args: CVarArg...) -> NSString {
+    func format(args: CVarArgType...) -> NSString {
         return NSString(format: self, arguments: getVaList(args))
     }
     
@@ -28,9 +28,9 @@ extension NSString {
         let plaintext = self.cStringUsingEncoding(NSUTF8StringEncoding)
         let plaintextLen = CUnsignedInt(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
         
-        CC_MD5(plaintext!, plaintextLen, result)
+        CC_MD5(plaintext, plaintextLen, result)
         
         var md5Hash = NSMutableString(string: "")
         for i in 0..<digestLen {
@@ -39,7 +39,7 @@ extension NSString {
         
         result.destroy()
         
-        return String(md5Hash)
+        return String(format: md5Hash)
     }
     
     //#pragma mark - Base64
@@ -50,7 +50,7 @@ extension NSString {
     func encodeBase64() -> NSString {
         var data = self.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         data = GTMBase64.encodeData(data)
-        var base64String = NSString(data: data, encoding: NSUTF8StringEncoding)
+        var base64String = NSString(data: data!, encoding: NSUTF8StringEncoding)
         return base64String
     }
     
@@ -60,21 +60,20 @@ extension NSString {
     func decodeBase64() -> NSString {
         var data = self.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         data = GTMBase64.decodeData(data)
-        var base64String = NSString(data: data, encoding: NSUTF8StringEncoding)
+        var base64String = NSString(data: data!, encoding: NSUTF8StringEncoding)
         return base64String
     }
     
     //#pragma mark - String Validate
     
-    private func regularWithPattern(pattern: NSString) -> Bool {
+    private func regularWithPattern(pattern: NSString!) -> Bool {
         if pattern != nil && !pattern.validateNotNull() {
             return false
         }
         var error: NSError? = nil
-        var regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: NSRegularExpressionOptions.CaseInsensitive, error: &error)
-        
-        var options = NSMatchingOptions.Anchored | NSMatchingOptions.ReportCompletion | NSMatchingOptions.ReportProgress
-        var number = regex.numberOfMatchesInString(self, options: options, range: NSMakeRange(0, self.length))
+        var regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: .CaseInsensitive, error: &error)
+        var options: NSMatchingOptions = .Anchored | .ReportCompletion | .ReportProgress
+        var number = regex!.numberOfMatchesInString(self, options: options, range: NSMakeRange(0, self.length))
         return (number == 1)
     }
     /**
@@ -87,7 +86,7 @@ extension NSString {
     
     func validateCarNo() -> Bool {
         
-        return self.regularWithPattern("^[\u{4e00}\u{9fa5}{1}[a-zA-Z]{1}[a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u{4e00}\u{9fa5}$")
+        return self.regularWithPattern("^[\\u4e00-\\u9fa5]{1}[a-zA-Z]{1}[a-zA-Z_0-9]{4}[a-zA-Z_0-9_\\u4e00-\\u9fa5]$")
     }
     
     func validateNumber() -> Bool {
@@ -104,7 +103,7 @@ extension NSString {
         if !self.isKindOfClass(NSClassFromString("NSString")) {
             return false
         }
-        var tempString: NSString = self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).bridgeToObjectiveC()
+        var tempString: NSString = self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         if tempString.isEqualToString("") {
             return false
         }
@@ -113,7 +112,7 @@ extension NSString {
     
     func validateCarType() -> Bool {
         
-        return self.regularWithPattern("^[\u{4E00}\u{9FFF}+$")
+        return self.regularWithPattern("^[\\u4E00-\\u9FFF]+$")
     }
     
     func validateLandline() -> Bool {
@@ -128,12 +127,12 @@ extension NSString {
     
     func validateURLString() -> Bool {
         
-        return self.regularWithPattern("^[0-9]+$")
+        return self.regularWithPattern("([a-zA-z]+://[^\\s]*)?")
     }
     
     func validateCharacters() -> Bool {
         
-        return self.regularWithPattern("[\u{4e00}\u{9fa5}+")
+        return self.regularWithPattern("[\\u4e00-\\u9fa5]+")
     }
     
     func validateDoubleByte() -> Bool {
@@ -172,8 +171,8 @@ extension NSString {
     计算文本size 只针对单行
     @font 字体
     */
-    func computeSizeWithFont(font: UIFont) -> CGSize {
-        if !self.isKindOfClass(NSClassFromString("NSString")) || font == nil {
+    func computeSizeWithFont(font: UIFont!) -> CGSize {
+        if !self.isKindOfClass(NSString) || font == nil {
             return CGSizeZero
         }
         var size = self.sizeWithAttributes([NSFontAttributeName: font])
@@ -185,8 +184,8 @@ extension NSString {
     @font 字体
     @height 默认高度
     */
-    func computeWidthWithFont(font: UIFont, height: CGFloat) -> CGFloat {
-        if !self.isKindOfClass(NSClassFromString("NSString")) || font == nil {
+    func computeWidthWithFont(font: UIFont!, height: CGFloat) -> CGFloat {
+        if !self.isKindOfClass(NSString) || font == nil {
             return 0.0
         }
         
@@ -207,8 +206,8 @@ extension NSString {
     @font 字体
     @width 默认宽度
     */
-    func computeHeightWithFont(font: UIFont, width: CGFloat) -> CGFloat {
-        if !self.isKindOfClass(NSClassFromString("NSString")) || font == nil {
+    func computeHeightWithFont(font: UIFont!, width: CGFloat) -> CGFloat {
+        if !self.isKindOfClass(NSString) || font == nil {
             return 0.0
         }
         var height: CGFloat = CGRectGetHeight(self.boundingRectWithSize(CGSizeMake(width, CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil))
@@ -246,10 +245,10 @@ extension NSString {
     //#pragma mark - JSON
     func JSON() -> AnyObject! {
         var data = self.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        if !data {
+        if data == nil {
             return nil
         }
         
-        return data.JSON()
+        return data!.JSON()
     }
 }

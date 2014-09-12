@@ -24,7 +24,7 @@ let kScoreURL: NSString = "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.wo
 */
 let kAppURL: NSString = "http://itunes.apple.com/lookup?id=" + kACAppleID
 
-func fDataURLString(text: NSString) -> NSString {
+func fDataURLString(text: NSString!) -> NSString {
     if text != nil && text.isKindOfClass(NSClassFromString("NSString")) {
         return "http://app.zontenapp.com.cn/" + text
     }
@@ -32,7 +32,7 @@ func fDataURLString(text: NSString) -> NSString {
     return "http://app.zontenapp.com.cn/"
 }
 
-func fImageURLString(text: NSString) -> NSString {
+func fImageURLString(text: NSString!) -> NSString {
     if text != nil && text.isKindOfClass(NSClassFromString("NSString")) {
         return "http://app.zontenapp.com.cn/" + text
     }
@@ -64,7 +64,7 @@ let vUserDefaults : NSUserDefaults = NSUserDefaults.standardUserDefaults()
 let vCurrentDevice: UIDevice       = UIDevice.currentDevice()
 
 //处理字符串
-func fDealwithString(str: NSString) -> NSString {
+func fDealwithString(str: NSString!) -> NSString {
     if str != nil && str.isKindOfClass(NSClassFromString("NSString")) {
         return str
     }
@@ -108,7 +108,7 @@ func fAppTmpAddTo(path: NSString) -> NSString {
     return NSTemporaryDirectory().stringByAppendingPathComponent(path)
 }
 
-func ACSTR(format : String, args: CVarArg...) -> String {
+func ACSTR(format : String, args: CVarArgType...) -> String {
     return NSString(format: format, arguments: getVaList(args))
 }
 
@@ -133,6 +133,16 @@ let kCurrentSystemVersion: NSString = vCurrentDevice.systemVersion
 let sharedUserInterfaceIdiom = (vCurrentDevice.respondsToSelector("userInterfaceIdiom") ? vCurrentDevice.userInterfaceIdiom : UIUserInterfaceIdiom.Phone)
 
 let isiPad   = (sharedUserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
-let iPhone5  = (UIScreen.instancesRespondToSelector("currentMode") ? CGSizeEqualToSize(CGSizeMake(640.0, 1136.0), UIScreen.mainScreen().currentMode.size) : false)
+let iPhone5  = (UIScreen.instancesRespondToSelector("currentMode") ? CGSizeEqualToSize(CGSizeMake(640.0, 1136.0), UIScreen.mainScreen().currentMode!.size) : false)
 let isRetina = (UIScreen.mainScreen().scale == 2)
+
+func isEmptyObject(obj: AnyObject!) -> Bool {
+    let flag = !(obj != nil && !(obj is NSNull))
+    return flag
+}
+
+func isEmptyList(list: AnyObject!) -> Bool {
+    let flag = !(list != nil && !(list is NSNull) && ((list is NSArray) || (list is NSDictionary)) && list.count > 0)
+    return flag
+}
 

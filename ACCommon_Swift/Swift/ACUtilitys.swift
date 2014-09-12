@@ -23,7 +23,7 @@ let kPlaceholderColor: UIColor = fColorRGB(288.0, 288.0, 288.0)
 let ARC4RANDOM_MAX = 0x100000000
 
 var hostReach: Reachability?
-var isSetupNetwork: Bool? = NO
+var isSetupNetwork: Bool = NO
 
 class ACUtilitys: NSObject {
     
@@ -113,7 +113,7 @@ class ACUtilitys: NSObject {
         
         var nextResponder = rootView.nextResponder()
         
-        if nextResponder.isKindOfClass(NSClassFromString("UIViewController")) {
+        if nextResponder!.isKindOfClass(UIViewController) {
             
             result = nextResponder as? UIViewController
         }
@@ -136,10 +136,10 @@ class ACUtilitys: NSObject {
         var image1x: UIImage?
         var image2x: UIImage?
         
-        image1x = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource(name, ofType: ext))
+        image1x = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource(name, ofType: ext)!)
         
-        if ext && !ext.isEqualToString("") {
-            image2x = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource(NSString(format: "%@@2x", name), ofType: ext))
+        if ext != nil && !ext.isEqualToString("") {
+            image2x = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource(NSString(format: "%@@2x", name), ofType: ext)!)
         } else {
             var range: NSRange = name.rangeOfString(".", options: NSStringCompareOptions.BackwardsSearch)
             if range.location != Foundation.NSNotFound {
@@ -147,14 +147,14 @@ class ACUtilitys: NSObject {
             } else {
                 name = NSString(format: "%@@2x",name)
             }
-            image2x = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource(name, ofType: ext))
+            image2x = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource(name, ofType: ext)!)
         }
         
-        if (isRetina && image2x) {
+        if isRetina && image2x != nil {
             return image2x!
         }
         
-        if !image1x {
+        if image1x == nil {
             return image2x!
         }
         return image1x!
@@ -191,9 +191,8 @@ class ACUtilitys: NSObject {
         
         UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.mainScreen().scale)
         for imageInfo in imagesInfo {
-            var curImage: UIImage = (imageInfo as NSDictionary)["image"] as UIImage
             var curRect: CGRect = CGRectFromString((imageInfo["rect"] as NSString))
-            if curImage != nil {
+            if let curImage = (imageInfo as NSDictionary)["image"] as? UIImage {
                 curImage.drawInRect(curRect)
             }
         }
@@ -208,15 +207,15 @@ class ACUtilitys: NSObject {
     gif图片解析
     */
    class func gifParseWithGifData(gifData: NSData!) -> NSArray! {
-        if !gifData {
+        if gifData == nil {
             return nil
         }
     
         //加载gif
-        var gif: CGImageSourceRef = CGImageSourceCreateWithData((gifData as CFDataRef), nil).takeRetainedValue()
+        var gif: CGImageSourceRef = CGImageSourceCreateWithData((gifData as CFDataRef), nil)
         
         //获取gif的各种属性
-        var gifprops = CGImageSourceCopyPropertiesAtIndex(gif, UInt(0), nil).takeRetainedValue()
+        var gifprops = CGImageSourceCopyPropertiesAtIndex(gif, UInt(0), nil)
         CFShow(gifprops)
     
         //获取gif中静态图片的数量
@@ -226,8 +225,8 @@ class ACUtilitys: NSObject {
         var images: NSMutableArray = NSMutableArray(capacity: Int(count))
         
         for var index: size_t = 0; index < count; index++ {
-            var ref: CGImageRef = CGImageSourceCreateImageAtIndex(gif, index, nil).takeRetainedValue()
-            var img: UIImage = UIImage(CGImage: ref)
+            var ref: CGImageRef = CGImageSourceCreateImageAtIndex(gif, index, nil)
+            var img: UIImage! = UIImage(CGImage: ref)
             
             if img != nil {
                 images.addObject(img)
@@ -242,7 +241,7 @@ class ACUtilitys: NSObject {
         var ret: NSString = ""
         
         var info: CTTelephonyNetworkInfo = CTTelephonyNetworkInfo()
-        var carrier: CTCarrier = info.subscriberCellularProvider
+        var carrier = info.subscriberCellularProvider
         
         if carrier == nil {
             
@@ -577,7 +576,7 @@ class ACUtilitys: NSObject {
         for var i = 0; i < colorCount; i++ {
             var color: UIColor = p_colors[i] as UIColor
             var temcolorRef = color.CGColor
-            var components: ConstUnsafePointer<CGFloat> = CGColorGetComponents(temcolorRef)
+            var components: UnsafePointer<CGFloat> = CGColorGetComponents(temcolorRef)
             for var j = 0; j < numOfComponents; ++j {
                 colorComponents[i * numOfComponents + j] = components[j]
             }
@@ -615,7 +614,7 @@ class ACUtilitys: NSObject {
             assert(textField != nil, "对象必须是UITextField或者UITextView")
         }
     
-        var toBeString: NSString = textField.text.bridgeToObjectiveC()
+        var toBeString: NSString = textField.text
         toBeString = toBeString.stringByReplacingCharactersInRange(range, withString: string)//得到输入框的内容
         
         if toBeString.length > number { //如果输入框内容大于number则弹出警告
@@ -684,7 +683,7 @@ class ACUtilitys: NSObject {
                     var trackViewURLString: NSString = releaseInfo["trackViewUrl"] as NSString
                     var releaseNotes: NSString = releaseInfo["releaseNotes"] as NSString
                     
-                    if block {
+                    if block != nil {
                         block(releaseInfo: ["trackViewUrl": trackViewURLString,
                                             "version": lastVersion,
                                             "releaseNotes": releaseNotes])
@@ -708,7 +707,7 @@ class ACUtilitys: NSObject {
         request.HTTPMethod = "POST"
         var urlResponse: NSURLResponse? = nil
         var error: NSError? = nil
-        var recervedData: NSData = NSURLConnection.sendSynchronousRequest(request, returningResponse: &urlResponse, error: &error)
+        var recervedData: NSData! = NSURLConnection.sendSynchronousRequest(request, returningResponse: &urlResponse, error: &error)
         
         dispatch_async(dispatch_get_main_queue(), {
             
@@ -806,13 +805,13 @@ class ACUtilitys: NSObject {
     class func showNoContent(flag: Bool, displayView: UIView!, displayContent: NSString!) {
         if flag {
             var label: UILabel! = nil
-            if displayView.viewWithTag(99998) {
+            if displayView.viewWithTag(99998) == nil {
                 label = UILabel(frame: CGRectMake(0.0, 0.0, kScreenWidth, kScreenHeight / 4.0))
                 label.tag = 99998
                 label.backgroundColor = UIColor.clearColor()
                 label.textColor = UIColor.lightGrayColor()
                 label.font = UIFont.systemFontOfSize(17.0)
-                label.textAlignment = NSTextAlignment.Center
+                label.textAlignment = .Center
                 label.center = displayView.center
                 displayView.addSubview(label)
             }
@@ -826,8 +825,7 @@ class ACUtilitys: NSObject {
                 })
         }
         else {
-            if displayView.viewWithTag(99998) {
-                var view = displayView.viewWithTag(99998)
+            if let view = displayView.viewWithTag(99998) {
                 UIView.animateWithDuration(0.3, animations: {
                     view.alpha = 0.0
                     }, completion: {

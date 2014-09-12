@@ -12,13 +12,13 @@ class ACTextField: UITextField {
     var placeholderTextColor: UIColor! {
         willSet(newValue) {
             
-            if !self.text && self.placeholder {
+            if self.text == nil && self.placeholder != nil {
                 
                 if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0 {
                     
                     var attributes = [NSForegroundColorAttributeName: newValue, NSFontAttributeName: self.font]
                     
-                    var attributed: NSMutableAttributedString = NSMutableAttributedString(string: self.placeholder)
+                    var attributed: NSMutableAttributedString = NSMutableAttributedString(string: self.placeholder!)
                     attributed.setAttributes(attributes, range: NSMakeRange(0, countElements(self.placeholder!)))
                     self.attributedPlaceholder = attributed
                 }
@@ -30,14 +30,20 @@ class ACTextField: UITextField {
     }
     
     override func drawPlaceholderInRect(rect: CGRect)  {
-        if !self.placeholderTextColor {
+        if self.placeholderTextColor == nil {
             super.drawPlaceholderInRect(rect)
             return
         }
         
         var paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+        paragraphStyle.lineBreakMode = .ByTruncatingTail
         paragraphStyle.alignment = self.textAlignment
-        self.placeholder.bridgeToObjectiveC().drawInRect(rect, withAttributes: [NSForegroundColorAttributeName: self.placeholderTextColor,NSFontAttributeName: self.font,NSParagraphStyleAttributeName: paragraphStyle])
+        let dict: [NSObject: AnyObject] = [
+            NSForegroundColorAttributeName: self.placeholderTextColor,
+            NSFontAttributeName: self.font,
+            NSParagraphStyleAttributeName: paragraphStyle
+        ]
+        let placeholder: NSString = self.placeholder!
+        placeholder.drawInRect(rect, withAttributes: dict)
     }
 }
