@@ -149,13 +149,13 @@ class ACLargerImageView: UIView, UIActionSheetDelegate,UIScrollViewDelegate {
                 var contentItemView = UIImageView(frame: scrollView.bounds)
                 contentItemView.contentMode = UIViewContentMode.Center
                 contentItemView.tag = 40000
-                contentItemView.setImageWithURL(NSURL(string: self.URLStrings[i] as NSString), completed: {
-                    (image: UIImage!, error: NSError!, cacheType: SDImageCacheType) in
-                        if error == nil && image != nil {
-                            var newImage = ACUtilitys.resizedFixedImageWithImage(image, size: contentItemView.frame.size)
-                            contentItemView.image = newImage
-                        }
-                    })
+                contentItemView.sd_setImageWithURL(NSURL(string: self.URLStrings[i] as NSString), completed: {
+                    (image, error, cacheType, imageURL) in
+                    if error == nil && image != nil {
+                        var newImage = ACUtilitys.resizedFixedImageWithImage(image, size: contentItemView.frame.size)
+                        contentItemView.image = newImage
+                    }
+                })
                 scrollView.addSubview(contentItemView)
                 
                 self.contentView.addSubview(scrollView)
