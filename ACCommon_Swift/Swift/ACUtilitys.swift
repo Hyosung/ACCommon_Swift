@@ -679,7 +679,7 @@ class ACUtilitys: NSObject {
                 var releaseInfo: NSDictionary = infoArray[0] as NSDictionary
                 var lastVersion: NSString = releaseInfo["version"] as NSString
                 
-                if lastVersion.compare(currentVersion) == NSComparisonResult.OrderedAscending {
+                if lastVersion.compare(currentVersion, options: NSStringCompareOptions.NumericSearch) == NSComparisonResult.OrderedDescending {
                     var trackViewURLString: NSString = releaseInfo["trackViewUrl"] as NSString
                     var releaseNotes: NSString = releaseInfo["releaseNotes"] as NSString
                     
@@ -718,7 +718,7 @@ class ACUtilitys: NSObject {
                     var releaseInfo: NSDictionary = infoArray[0] as NSDictionary
                     var lastVersion: NSString = releaseInfo["version"] as NSString
                     
-                    if lastVersion.compare(currentVersion) == NSComparisonResult.OrderedAscending {
+                    if lastVersion.compare(currentVersion, options: NSStringCompareOptions.NumericSearch) == NSComparisonResult.OrderedDescending {
                         var trackViewURL: NSString = releaseInfo["trackViewUrl"] as NSString
                         var releaseNotes: NSString = releaseInfo["releaseNotes"] as NSString
                         
