@@ -39,6 +39,23 @@ func fImageURLString(text: NSString!) -> NSString {
     return "http://app.zontenapp.com.cn/"
 }
 
+/**
+@synchronized的代替方法 同步锁一
+
+:param: lock 将要锁的对象
+:param: closure 要执行的操作
+*/
+func synced(lock: AnyObject!, closure: () -> ()) {
+    objc_sync_enter(lock)
+    closure()
+    objc_sync_exit(lock)
+}
+
+//func synce(closure: () -> ()) {
+//    let lockQueue = dispatch_queue_create("com.test.LockQueue", nil)
+//    dispatch_sync(lockQueue, closure)
+//}
+
 let kScreenSize  : CGSize  = UIScreen.mainScreen().bounds.size
 let kScreenWidth : CGFloat = CGRectGetWidth(UIScreen.mainScreen().bounds)
 let kScreenHeight: CGFloat = CGRectGetHeight(UIScreen.mainScreen().bounds)
